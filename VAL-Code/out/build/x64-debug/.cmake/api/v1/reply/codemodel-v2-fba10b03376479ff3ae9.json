@@ -55,7 +55,7 @@
 				{
 					"directoryIndex" : 1,
 					"id" : "VAL-Code::@13a8bc6dce450f67dd61",
-					"jsonFile" : "target-VAL-Code-Debug-11e84e66228a783e8ff8.json",
+					"jsonFile" : "target-VAL-Code-Debug-69ff4d710cf67be0ab8b.json",
 					"name" : "VAL-Code",
 					"projectIndex" : 0
 				}
@@ -65,12 +65,12 @@
 	"kind" : "codemodel",
 	"paths" : 
 	{
-		"build" : "C:/Users/Admin/Desktop/dev/VAL/VAL-Code/out/build/x64-debug",
-		"source" : "C:/Users/Admin/Desktop/dev/VAL/VAL-Code"
+		"build" : "C:/Users/Admin/source/repos/Aymeric-Droulers/VAL/VAL-Code/out/build/x64-debug",
+		"source" : "C:/Users/Admin/source/repos/Aymeric-Droulers/VAL/VAL-Code"
 	},
 	"version" : 
 	{
 		"major" : 2,
-		"minor" : 4
+		"minor" : 6
 	}
 }
