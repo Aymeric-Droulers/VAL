@@ -17,15 +17,16 @@ private:
 	float vitesse; //La vitesse du métro
 	int PAX; //Nombre de passagers
 
-public:
-	int getNumero();
-	int getTroncon_actuelle();
-	int getPosition_troncon();
-	float getVitesse();
-	int getPAX();
-	int setNumero(int &numero);
-	int setTroncon_actuelle( Troncon &troncon);
-	int setPosition_troncon( Troncon& troncon);
-	float setVitesse( int &vitesse);
-	int setPAX( int &Pax);
+public: 
+	int getNumero(); // Numéro de la rame
+	int getTroncon_actuelle(); //Station actuelle
+	int getPosition_troncon(); // Prochaine station
+	float getVitesse(); //La vitesse du métro
+	int getPAX(); //Nombre de passagers
+
+	int Rame::setNumero(int& numero);
+	int Rame::setTroncon_actuelle(Troncon& troncon);
+	int Rame::setPosition_troncon(Troncon& troncon);
+	float Rame::setVitesse(int& vitesse);
+	int Rame::setPAX(int& Pax);
 };
