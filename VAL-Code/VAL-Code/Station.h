@@ -23,4 +23,10 @@ public:
 	bool getTerminus(); // Si la fin de la ligne
 	bool getDepart(); // Indique au métro s'il peut partir  
 
+	string Station::setNom(string nom);
+	bool Station::setCurrentTrain(bool var); // Indique la presence d'un metro 
+	int Station::setPAX_quai(int nombre); //Nombre de personnes sur le quai 
+	bool Station::setTerminus(bool var); // Si la fin de la ligne
+	bool Station::setDepart(bool var); // Indique au métro s'il peut partir  
+
 };
