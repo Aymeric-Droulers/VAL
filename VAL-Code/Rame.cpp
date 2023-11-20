@@ -5,14 +5,14 @@ int Rame::getNumero()
 	return this->numero;
 }
 
-int Rame::getTroncon_actuelle()
+Troncon Rame::getTronconActuel()
 {
-	return this->troncon_actuelle;
+	return this->tronconActuel;
 }
 
-int Rame::getPosition_troncon()
+int Rame::getPositionTroncon()
 {
-	return this->position_troncon;
+	return this->positionTroncon;
 }
 
 float Rame::getVitesse()
@@ -26,23 +26,23 @@ int Rame::getPAX()
 }
 
 
-int Rame::setNumero(int Nnumero) 
+void Rame::setNumero(int Nnumero) 
 {
 	this->numero = Nnumero;
 }
-int Rame::setTroncon_actuelle( Troncon& troncon) 
+void Rame::setTronconActuel( Troncon& troncon) 
 {
-	this->troncon_actuelle = troncon;
+	this->tronconActuel = troncon;
 };
-int Rame::setPosition_troncon(Troncon& troncon) 
+void Rame::setPositionTroncon(int position) 
 {
-	this->position_troncon = troncon;
+	this->positionTroncon = position;
 };
-float Rame::setVitesse( int nVitesse) 
+void Rame::setVitesse(float nVitesse) 
 {
 	this->vitesse = nVitesse;
 };
-int Rame::setPAX(int nPax) 
+void Rame::setPAX(int nPax) 
 {
 	this->PAX = nPax;
 };

@@ -23,3 +23,22 @@ void Troncon::setTailleTroncon(int taille)
 void Troncon::setRamesSurTroncon(const std::vector<Rame> listeRames) {
 	this->ramesSurTroncon = listeRames;
 }
+
+void Troncon::addRameSurTroncon(const Rame rame) {
+	this->ramesSurTroncon.push_back(rame);
+}
+
+void Troncon::removeRameSurLigne(int rameId) {
+
+	auto elemToRemove = this->ramesSurTroncon.begin();
+	while (this->ramesSurTroncon[elemToRemove].numero != rameId || ramesSurTroncon - 1 == this->ramesSurTroncon.end()) {
+		elemToRemove += 1;
+	}
+	if (this->ramesSurTroncon[elemToRemove].numero == rameId) {
+		this->ramesSurTroncon.erase(elemToRemove);
+	}
+	else {
+		cout << "Une erreur c'est produite" << endl;
+	}
+	
+}

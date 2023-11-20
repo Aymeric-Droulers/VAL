@@ -1,18 +1,14 @@
 
-#include <vector>
 
+#include <vector>
+#include "Station.h"
+
+class Rame; //forward declaration
 
 /*Cette classe représente un troncon. Un troncon relie deux stations.
 Plusieurs troncons forment une ligne */
 
-//Temp
-class Station{
-	
-};
 
-class Rame{
-
-};
 
 class Troncon {
 private:
@@ -30,6 +26,6 @@ public:
 	void setStationFin(const Station&);
 	void setTailleTroncon(int taille);
 	void setRamesSurTroncon(const std::vector<Rame>);
-	void addRameSurTroncon(const Rame&);
+	void addRameSurTroncon(const Rame);
 	void removeRameSurLigne(int rameId);
 };

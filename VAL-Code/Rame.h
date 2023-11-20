@@ -6,27 +6,36 @@
 #include <iostream>
 #include <string>
 
+#include "troncon.hpp"
 
+#include "Station.h"
 using namespace std;
 
 class Rame {
 private:
 	int numero; // Numéro de la rame
-	int troncon_actuelle; //Station actuelle
-	int position_troncon; // Prochaine station
-	float vitesse; //La vitesse du métro
+	Troncon tronconActuel; //Troncon actuel
+	int positionTroncon; // Distance parcourue sur le troncon
+	float vitesse;//La vitesse du métro
 	int PAX; //Nombre de passagers
 
 public: 
+	Rame() {
+		numero = 0;
+		tronconActuel;
+		positionTroncon = 0;
+		vitesse = 0;
+		PAX = 0;
+	}
 	int getNumero(); 
-	int getTroncon_actuelle(); 
-	int getPosition_troncon(); 
+	Troncon getTronconActuel(); 
+	int getPositionTroncon(); 
 	float getVitesse(); 
 	int getPAX(); 
 
-	int Rame::setNumero(int Nnumero);
-	int Rame::setTroncon_actuelle(Troncon& troncon);
-	int Rame::setPosition_troncon(Troncon& troncon);
-	float Rame::setVitesse(int nVitesse);
-	int Rame::setPAX(int nPax);
+	void setNumero(int Nnumero);
+	void setTronconActuel(Troncon& troncon);
+	void setPositionTroncon(int postion);
+	void setVitesse(float nVitesse);
+	void setPAX(int nPax);
 };

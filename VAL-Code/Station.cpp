@@ -26,17 +26,17 @@ bool Station::getDepart()
 	return this->depart;
 }
 
-string Station::setNom(string nom) 
+void Station::setNom(string nom) 
 {
 
 };
-bool Station::setCurrentTrain(bool var) 
+void Station::setCurrentTrain(bool var) 
 {
 }; 
-int Station::setPAX_quai(int nombre) 
+void Station::setPAX_quai(int nombre) 
 {
 }; 
-bool Station::setTerminus(bool var) {
+void Station::setTerminus(bool var) {
 }; 
-bool Station::setDepart(bool var) {
+void Station::setDepart(bool var) {
 }; 
