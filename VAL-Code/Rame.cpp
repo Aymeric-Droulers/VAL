@@ -30,11 +30,11 @@ int Rame::setNumero(int Nnumero)
 {
 	this->numero = Nnumero;
 }
-int Rame::setTroncon_actuelle( Troncon& troncon) 
+int Rame::setTroncon_actuelle(Troncon troncon) 
 {
 	this->troncon_actuelle = troncon;
 };
-int Rame::setPosition_troncon(Troncon& troncon) 
+int Rame::setPosition_troncon(Troncon troncon) 
 {
 	this->position_troncon = troncon;
 };
