@@ -1,9 +1,10 @@
+#pragma once
 
+class Rame;
 
-#include <vector>
+#include "Rame.hpp"
 #include "Station.h"
 
-class Rame; //forward declaration
 
 /*Cette classe représente un troncon. Un troncon relie deux stations.
 Plusieurs troncons forment une ligne */

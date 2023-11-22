@@ -24,9 +24,9 @@ public:
 	bool getDepart(); // Indique au métro s'il peut partir  
 
 	void setNom(string nom);
-	void setCurrentTrain(bool var); // Indique la presence d'un metro 
-	void setPAX_quai(int nombre); //Nombre de personnes sur le quai 
-	void setTerminus(bool var); // Si la fin de la ligne
-	void setDepart(bool var); // Indique au métro s'il peut partir  
+	void setCurrentTrain(bool var); 
+	void setPAX_quai(int nombre); 
+	void setTerminus(bool var); 
+	void setDepart(bool var);
 
 };

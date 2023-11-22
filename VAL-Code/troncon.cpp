@@ -1,6 +1,7 @@
-#include "troncon.hpp"
 #include <iostream>
-
+#include <algorithm>
+#include "Rame.hpp"
+#include "troncon.hpp"
 
 void Troncon::setStationDebut(const Station& station)
 {
@@ -30,15 +31,12 @@ void Troncon::addRameSurTroncon(const Rame rame) {
 
 void Troncon::removeRameSurLigne(int rameId) {
 
-	auto elemToRemove = this->ramesSurTroncon.begin();
-	while (this->ramesSurTroncon[elemToRemove].numero != rameId || ramesSurTroncon - 1 == this->ramesSurTroncon.end()) {
-		elemToRemove += 1;
+	
+	for (int i = 0; i < this->ramesSurTroncon.size(); i++) {
+		if (this->ramesSurTroncon[i].getNumero() == rameId) {
+			this->ramesSurTroncon.erase(this->ramesSurTroncon.begin() + i);
+		}
 	}
-	if (this->ramesSurTroncon[elemToRemove].numero == rameId) {
-		this->ramesSurTroncon.erase(elemToRemove);
-	}
-	else {
-		cout << "Une erreur c'est produite" << endl;
-	}
+
 	
 }

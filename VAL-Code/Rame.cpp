@@ -1,11 +1,14 @@
-#include "Rame.h"
+#include "Rame.hpp"
+
+
+
 
 int Rame::getNumero()
 {
 	return this->numero;
 }
 
-Troncon Rame::getTronconActuel()
+Troncon* Rame::getTronconActuel()
 {
 	return this->tronconActuel;
 }
@@ -30,7 +33,7 @@ void Rame::setNumero(int Nnumero)
 {
 	this->numero = Nnumero;
 }
-void Rame::setTronconActuel( Troncon& troncon) 
+void Rame::setTronconActuel(Troncon* troncon)
 {
 	this->tronconActuel = troncon;
 };
