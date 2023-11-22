@@ -29,8 +29,4 @@ public:
 	bool setTerminus(bool var); // Si la fin de la ligne
 	bool setDepart(bool var); // Indique au métro s'il peut partir  
 
-	bool getCurrentTrain(); 
-	int getPAX_quai();  
-	bool getTerminus(); 
-	bool getDepart();  
 };

@@ -1,5 +1,5 @@
 #include "Rame.h"
-
+//guetters
 int Rame::getNumero()
 {
 	return this->numero;
@@ -24,12 +24,12 @@ int Rame::getPAX()
 {
 	return this->PAX;
 }
-
-
+//sets
 int Rame::setNumero(int Nnumero) 
 {
 	this->numero = Nnumero;
 }
+
 
 int Rame::setTroncon_actuelle( int a) 
 {

@@ -45,5 +45,4 @@ bool Station::setTerminus(bool var)
 bool Station::setDepart(bool var) 
 {
 	this->depart = var;
-
 }; 
