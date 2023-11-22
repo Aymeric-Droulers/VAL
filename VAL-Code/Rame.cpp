@@ -30,11 +30,19 @@ int Rame::setNumero(int Nnumero)
 {
 	this->numero = Nnumero;
 }
+<<<<<<< HEAD:VAL-Code/VAL-Code/Rame.cpp
 int Rame::setTroncon_actuelle( Troncon& troncon) 
 {
 	this->troncon_actuelle = troncon;
 };
 int Rame::setPosition_troncon(Troncon& troncon) 
+=======
+int Rame::setTroncon_actuelle(Troncon troncon) 
+{
+	this->troncon_actuelle = troncon;
+};
+int Rame::setPosition_troncon(Troncon troncon) 
+>>>>>>> main:VAL-Code/Rame.cpp
 {
 	this->position_troncon = troncon;
 };

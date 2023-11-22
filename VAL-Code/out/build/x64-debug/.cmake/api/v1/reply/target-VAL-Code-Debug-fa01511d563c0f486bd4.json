@@ -2,10 +2,10 @@
 	"artifacts" : 
 	[
 		{
-			"path" : "VAL-Code/VAL-Code.exe"
+			"path" : "VAL-Code.exe"
 		},
 		{
-			"path" : "VAL-Code/VAL-Code.pdb"
+			"path" : "VAL-Code.pdb"
 		}
 	],
 	"backtrace" : 1,
@@ -18,7 +18,7 @@
 		],
 		"files" : 
 		[
-			"VAL-Code/CMakeLists.txt"
+			"CMakeLists.txt"
 		],
 		"nodes" : 
 		[
@@ -65,7 +65,7 @@
 			]
 		}
 	],
-	"id" : "VAL-Code::@13a8bc6dce450f67dd61",
+	"id" : "VAL-Code::@6890427a1f51a3e7e1df",
 	"link" : 
 	{
 		"commandFragments" : 
@@ -89,8 +89,8 @@
 	"nameOnDisk" : "VAL-Code.exe",
 	"paths" : 
 	{
-		"build" : "VAL-Code",
-		"source" : "VAL-Code"
+		"build" : ".",
+		"source" : "."
 	},
 	"sourceGroups" : 
 	[
@@ -118,34 +118,34 @@
 		{
 			"backtrace" : 1,
 			"compileGroupIndex" : 0,
-			"path" : "VAL-Code/VAL-Code.cpp",
+			"path" : "VAL-Code.cpp",
 			"sourceGroupIndex" : 0
 		},
 		{
 			"backtrace" : 1,
-			"path" : "VAL-Code/VAL-Code.h",
+			"path" : "VAL-Code.h",
 			"sourceGroupIndex" : 1
 		},
 		{
 			"backtrace" : 1,
-			"path" : "VAL-Code/Rame.h",
+			"path" : "Rame.h",
 			"sourceGroupIndex" : 1
 		},
 		{
 			"backtrace" : 1,
-			"path" : "VAL-Code/Station.h",
+			"path" : "Station.h",
 			"sourceGroupIndex" : 1
 		},
 		{
 			"backtrace" : 1,
 			"compileGroupIndex" : 0,
-			"path" : "VAL-Code/Rame.cpp",
+			"path" : "Rame.cpp",
 			"sourceGroupIndex" : 0
 		},
 		{
 			"backtrace" : 1,
 			"compileGroupIndex" : 0,
-			"path" : "VAL-Code/Station.cpp",
+			"path" : "Station.cpp",
 			"sourceGroupIndex" : 0
 		}
 	],

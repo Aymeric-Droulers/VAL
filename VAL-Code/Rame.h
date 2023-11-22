@@ -25,8 +25,13 @@ public:
 	int getPAX(); 
 
 	int Rame::setNumero(int Nnumero);
+<<<<<<< HEAD:VAL-Code/VAL-Code/Rame.h
 	int Rame::setTroncon_actuelle(Troncon& troncon);
 	int Rame::setPosition_troncon(Troncon& troncon);
+=======
+	int Rame::setTroncon_actuelle(Troncon troncon);
+	int Rame::setPosition_troncon(Troncon troncon);
+>>>>>>> main:VAL-Code/Rame.h
 	float Rame::setVitesse(int nVitesse);
 	int Rame::setPAX(int nPax);
 };
