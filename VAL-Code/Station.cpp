@@ -26,21 +26,6 @@ bool Station::getDepart()
 	return this->depart;
 }
 
-<<<<<<< HEAD:VAL-Code/VAL-Code/Station.cpp
-string Station::setNom(string nom) 
-{
-
-};
-bool Station::setCurrentTrain(bool var) 
-{
-}; 
-int Station::setPAX_quai(int nombre) 
-{
-}; 
-bool Station::setTerminus(bool var) {
-}; 
-bool Station::setDepart(bool var) {
-=======
 string Station::setNom(string Nom) 
 {
 	this->nom = Nom;
@@ -60,5 +45,5 @@ bool Station::setTerminus(bool var)
 bool Station::setDepart(bool var) 
 {
 	this->depart = var;
->>>>>>> main:VAL-Code/Station.cpp
+
 }; 

@@ -5,6 +5,7 @@
 #include <mutex>
 #include <iostream>
 #include <string>
+#include "troncon.hpp"
 
 
 using namespace std;
@@ -24,14 +25,9 @@ public:
 	float getVitesse(); 
 	int getPAX(); 
 
-	int Rame::setNumero(int Nnumero);
-<<<<<<< HEAD:VAL-Code/VAL-Code/Rame.h
-	int Rame::setTroncon_actuelle(Troncon& troncon);
-	int Rame::setPosition_troncon(Troncon& troncon);
-=======
-	int Rame::setTroncon_actuelle(Troncon troncon);
-	int Rame::setPosition_troncon(Troncon troncon);
->>>>>>> main:VAL-Code/Rame.h
-	float Rame::setVitesse(int nVitesse);
-	int Rame::setPAX(int nPax);
+	int setNumero(int Nnumero);
+	int setTroncon_actuelle(int a);
+	int setPosition_troncon(int a);
+	float setVitesse(int nVitesse);
+	int setPAX(int nPax);
 };
