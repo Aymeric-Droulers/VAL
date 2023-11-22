@@ -19,6 +19,9 @@ private:
 	int PAX; //Nombre de passagers
 
 public: 
+	Rame(int num, int troncon, int pos = 0, int vit = 0, int pass = 0)
+		: numero(num), troncon_actuelle(troncon), position_troncon(pos), vitesse(vit), PAX(pass) {
+	}
 	int getNumero(); 
 	int getTroncon_actuelle(); 
 	int getPosition_troncon(); 
