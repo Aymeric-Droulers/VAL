@@ -77,6 +77,13 @@ build CMakeFiles\VAL-Code.dir\troncon.obj: CXX_COMPILER__VAL-Code_Debug C$:\User
   TARGET_COMPILE_PDB = CMakeFiles\VAL-Code.dir\
   TARGET_PDB = VAL-Code.pdb
 
+build CMakeFiles\VAL-Code.dir\affichage.obj: CXX_COMPILER__VAL-Code_Debug C$:\Users\Admin\Desktop\dev\VAL\VAL-Code\affichage.cpp || cmake_object_order_depends_target_VAL-Code
+  FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1 -std:c++20
+  OBJECT_DIR = CMakeFiles\VAL-Code.dir
+  OBJECT_FILE_DIR = CMakeFiles\VAL-Code.dir
+  TARGET_COMPILE_PDB = CMakeFiles\VAL-Code.dir\
+  TARGET_PDB = VAL-Code.pdb
+
 
 # =============================================================================
 # Link build statements for EXECUTABLE target VAL-Code
@@ -85,7 +92,7 @@ build CMakeFiles\VAL-Code.dir\troncon.obj: CXX_COMPILER__VAL-Code_Debug C$:\User
 #############################################
 # Link the executable VAL-Code.exe
 
-build VAL-Code.exe: CXX_EXECUTABLE_LINKER__VAL-Code_Debug CMakeFiles\VAL-Code.dir\VAL-Code.obj CMakeFiles\VAL-Code.dir\Rame.obj CMakeFiles\VAL-Code.dir\Station.obj CMakeFiles\VAL-Code.dir\troncon.obj
+build VAL-Code.exe: CXX_EXECUTABLE_LINKER__VAL-Code_Debug CMakeFiles\VAL-Code.dir\VAL-Code.obj CMakeFiles\VAL-Code.dir\Rame.obj CMakeFiles\VAL-Code.dir\Station.obj CMakeFiles\VAL-Code.dir\troncon.obj CMakeFiles\VAL-Code.dir\affichage.obj
   FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1
   LINK_FLAGS = /machine:x64 /debug /INCREMENTAL /subsystem:console
   LINK_LIBRARIES = kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib

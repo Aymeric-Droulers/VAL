@@ -4,7 +4,7 @@ class Rame;
 
 #include "Rame.hpp"
 #include "Station.h"
-
+#include "Point2D.hpp"
 
 /*Cette classe représente un troncon. Un troncon relie deux stations.
 Plusieurs troncons forment une ligne */
@@ -17,6 +17,7 @@ private:
 	Station stationFin;
 	int tailleTroncon;
 	std::vector<Rame> ramesSurTroncon;
+	std::vector<Point2D> trace;
 public:
 	Station getStationDebut() { return (this->stationDebut); }
 	Station getStationFin() { return(this->stationFin); }
