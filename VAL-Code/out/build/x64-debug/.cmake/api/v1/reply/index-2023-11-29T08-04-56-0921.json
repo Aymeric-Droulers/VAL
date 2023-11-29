@@ -35,11 +35,7 @@
 			}
 		},
 		{
-<<<<<<<< Updated upstream:VAL-Code/out/build/x64-debug/.cmake/api/v1/reply/index-2023-11-27T07-26-55-0989.json
 			"jsonFile" : "cache-v2-a82714d6b23f3ec6156a.json",
-========
-			"jsonFile" : "cache-v2-c2e1993749c4c7c0ee96.json",
->>>>>>>> Stashed changes:VAL-Code/out/build/x64-debug/.cmake/api/v1/reply/index-2023-11-27T07-30-17-0447.json
 			"kind" : "cache",
 			"version" : 
 			{
@@ -94,11 +90,7 @@
 				"responses" : 
 				[
 					{
-<<<<<<<< Updated upstream:VAL-Code/out/build/x64-debug/.cmake/api/v1/reply/index-2023-11-27T07-26-55-0989.json
 						"jsonFile" : "cache-v2-a82714d6b23f3ec6156a.json",
-========
-						"jsonFile" : "cache-v2-c2e1993749c4c7c0ee96.json",
->>>>>>>> Stashed changes:VAL-Code/out/build/x64-debug/.cmake/api/v1/reply/index-2023-11-27T07-30-17-0447.json
 						"kind" : "cache",
 						"version" : 
 						{

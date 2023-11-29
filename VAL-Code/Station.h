@@ -17,16 +17,19 @@ private:
 	bool terminus; // Si la fin de la ligne
 	bool depart; // Indique au métro s'il peut partir  
 public:
+	Station(string nom, bool presentTrain, int nbrpersonnes = 0, bool fin, bool partir)
+		: nom(nom), currentTrain(presentTrain), PAX_quai(nbrpersonnes), terminus(fin), depart(partir)) {
+	}
 	string getNom();
 	bool getCurrentTrain(); // Indique la presence d'un metro 
 	int getPAX_quai(); //Nombre de personnes sur le quai 
 	bool getTerminus(); // Si la fin de la ligne
 	bool getDepart(); // Indique au métro s'il peut partir  
 
-	string setNom(string nom);
-	bool setCurrentTrain(bool var); // Indique la presence d'un metro 
-	int setPAX_quai(int nombre); //Nombre de personnes sur le quai 
-	bool setTerminus(bool var); // Si la fin de la ligne
-	bool setDepart(bool var); // Indique au métro s'il peut partir  
+	void setNom(string nom);
+	void setCurrentTrain(bool var); // Indique la presence d'un metro 
+	void setPAX_quai(int nombre); //Nombre de personnes sur le quai 
+	void setTerminus(bool var); // Si la fin de la ligne
+	void setDepart(bool var); // Indique au métro s'il peut partir  
 
 };
