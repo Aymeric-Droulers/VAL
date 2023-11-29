@@ -1,6 +1,15 @@
 #include "Station.h"
 using namespace std;
 
+Station::Station(string nom, bool currentTrain, int pax, bool terminus, bool depart)
+{
+	this->nom = nom;
+	this->currentTrain = currentTrain;
+	this->PAX_quai = pax;
+	this->terminus = terminus;
+	this->depart = depart;
+}
+
 string Station::getNom()
 {
 	return this->nom;

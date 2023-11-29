@@ -3,7 +3,7 @@
 #
 
 # Ajoutez une source à l'exécutable de ce projet.
-add_executable (VAL-Code "VAL-Code.cpp" "VAL-Code.h" "Rame.hpp" "Station.h" "troncon.hpp" "Rame.cpp" "Station.cpp" "troncon.cpp" "affichage.cpp")
+add_executable (VAL-Code "VAL-Code.cpp" "VAL-Code.h" "Rame.hpp" "Station.h" "troncon.hpp" "Rame.cpp" "Station.cpp" "troncon.cpp" )
 
 if (CMAKE_VERSION VERSION_GREATER 3.12)
   set_property(TARGET VAL-Code PROPERTY CXX_STANDARD 20)

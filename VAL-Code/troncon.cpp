@@ -3,6 +3,13 @@
 #include "Rame.hpp"
 #include "troncon.hpp"
 
+
+Troncon::Troncon(Station& stationDebut, Station& stationFin, int distance, std::vector<Point2D> trace)
+	: stationDebut(stationDebut), stationFin(stationFin), tailleTroncon(distance), tronconSuivant(nullptr),trace(trace) { // ou une initialisation appropriée pour tronconSuivant
+	// Le corps du constructeur (si nécessaire)
+}
+
+
 void Troncon::setStationDebut(const Station& station)
 {
 	this->stationDebut = station ;
@@ -39,4 +46,9 @@ void Troncon::removeRameSurLigne(int rameId) {
 	}
 
 	
+}
+
+void Troncon::setTronconSuivant(std::shared_ptr<Troncon>& troncon)
+{
+	this->tronconSuivant = troncon;
 }

@@ -19,6 +19,7 @@ private:
 	int posX;
 	int posY;
 public:
+	Station(string nom, bool currentTrain, int pax, bool terminus, bool depart);
 	string getNom();
 	bool getCurrentTrain(); // Indique la presence d'un metro 
 	int getPAX_quai(); //Nombre de personnes sur le quai 
