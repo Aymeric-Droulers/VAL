@@ -23,6 +23,19 @@ float distancePoints(vector<Point2D> lstPoints) {
     return distTotale;
 }
 
+
+void iteratorRames(Superviseur& reseau) {
+    for (int iRames = 0; iRames < reseau.listeRames.size(); iRames++) {
+        Rame* rame = reseau.listeRames[iRames];
+        Troncon* troncon = rame->getTronconActuel();
+        while (rame->getPositionTroncon() < troncon->getTailleTroncon()) {
+
+            rame->setPositionTroncon(rame->getPositionTroncon() + 1);
+            this_thread::sleep_for(chrono::milliseconds(100));
+        }
+    }
+}
+
 void affichage(sf::RenderWindow &window,Superviseur& reseau) {
     
     //Affichage des tracés des lignes:
@@ -51,42 +64,43 @@ void affichage(sf::RenderWindow &window,Superviseur& reseau) {
         float distanceTroncon = 0;
         bool depasse = false;
         int i = 0;
-        while(i<troncon->getTrace().size()-1 && !depasse)
-        {
-            vector<Point2D> morceau = { troncon->getTrace()[i],troncon->getTrace()[i + 1] };
-                if (distParcouruePx + distancePoints(morceau) < positionPx) {
-                    compteurPointsPasses++;
-                    distParcouruePx += distancePoints(morceau);
-                }
-                else {
-                    depasse = true;
-                    distanceTroncon = distancePoints(morceau);
-                }
-                i++;
+
+        while (i < troncon->getTrace().size() - 1 && !depasse) {
+            vector<Point2D> morceau = { troncon->getTrace()[i], troncon->getTrace()[i + 1] };
+            float distanceMorceau = distancePoints(morceau);
+            if (distParcouruePx + distanceMorceau < positionPx) {
+                compteurPointsPasses++;
+                distParcouruePx += distanceMorceau;
+            }
+            else {
+                depasse = true;
+                distanceTroncon = distanceMorceau;
+            }
+            i++;
         }
 
-        float distanceSurTroncon = rame->getPositionTroncon() - distParcouruePx;
-        float pourcentageSurTroncon = distanceTroncon / distanceSurTroncon;
+        // Calcul de la distance restante sur le tronçon actuel
+        float distanceRestanteSurTroncon = positionPx - distParcouruePx;
+        float pourcentageSurTroncon = 0;
+        if (distanceTroncon != 0) {
+            pourcentageSurTroncon = distanceRestanteSurTroncon / distanceTroncon;
+        }
+
         float distanceTronconX = (float)troncon->getTrace()[compteurPointsPasses + 1].posX - (float)troncon->getTrace()[compteurPointsPasses].posX;
         float distanceTronconY = (float)troncon->getTrace()[compteurPointsPasses + 1].posY - (float)troncon->getTrace()[compteurPointsPasses].posY;
-        
-        /*--------------TEMPO----------------------------------------*/
-        rame->setPosX(troncon->getTrace()[compteurPointsPasses].posX);
-        rame->setPosY(troncon->getTrace()[compteurPointsPasses].posY);
-        /*-----------------------------------------------------------*/
 
-        float newPosX = rame->getPosX() + (distanceTronconX * pourcentageSurTroncon);
-        float newPosY = rame->getPosY() + (distanceTronconY * pourcentageSurTroncon);
+        float newPosX = troncon->getTrace()[compteurPointsPasses].posX + (distanceTronconX * pourcentageSurTroncon);
+        float newPosY = troncon->getTrace()[compteurPointsPasses].posY + (distanceTronconY * pourcentageSurTroncon);
 
-
+        cout << newPosX << ";" << newPosY << endl;
         //Affichage
         sf::CircleShape shape(5.f);
         shape.setFillColor(sf::Color(100, 250, 50));
         shape.setPosition(newPosX, newPosY);
         window.draw(shape);
-
-       // cout << newPosX << ";" << newPosY << endl;
     }
+
+    this_thread::sleep_for(chrono::milliseconds(75));
 }
 
 
@@ -121,8 +135,8 @@ int main()
 
 
     vector<Station*>ligne1Stations = { &Quatre_Cantons,&Cité_scientifique,&Triolo,&Villeneuve_dAscq,&Pont_de_Bois,&Square_Flandres,&Mairie_dHellemmes,&Marbrerie,&Fives,&Caulier,&Gare_Lille_Flandres,&Rihour,&République_Beaux_Arts ,&Gambetta ,&Wazemmes ,&Porte_des_Postes,&CHU_Centre_Oscar_Lambret,&CHU_Eurasanté };
-    std::vector<Point2D> traceTroncon1 = { Point2D(10,20),Point2D(20,30) };
-    std::vector<Point2D> traceTroncon2 = { Point2D(20,30),Point2D(40,50),Point2D(50,50)};
+    std::vector<Point2D> traceTroncon1 = { Point2D(0,0),Point2D(20,30) };
+    std::vector<Point2D> traceTroncon2 = { Point2D(20,30),Point2D(40,90),Point2D(50,90)};
     Troncon ligne1_Quatre_Cantons(Quatre_Cantons, CHU_Eurasanté, 100,traceTroncon1);
     Troncon ligne1_CHU_Eurasanté(CHU_Eurasanté, Quatre_Cantons, 100,traceTroncon2);
     
@@ -136,7 +150,7 @@ int main()
     Rame rame1 = Rame();
     rame1.setNumero(1);
     rame1.setPAX(10);
-    rame1.setPositionTroncon(80);
+    rame1.setPositionTroncon(0);
     rame1.setTronconActuel(&ligne1_CHU_Eurasanté);
 
     ligne1_CHU_Eurasanté.addRameSurTroncon(rame1);
@@ -151,6 +165,11 @@ int main()
 
     reseau.listeLignes = listeLignes;
     reseau.listeRames = listeRames;
+
+
+    //-----------------------Thread------------------------------------------------//
+
+    thread threadConteur(iteratorRames, std::ref(reseau));
 
     //---------------------Création des fenetres----------------------------------//
     sf::RenderWindow window(sf::VideoMode(1920, 1080), "VAL");
@@ -170,9 +189,9 @@ int main()
         affichage(window,reseau);
         window.display();
     }
-	
 
-
+    
+    threadConteur.join();
 
 	return 0;
 }
