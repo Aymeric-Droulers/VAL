@@ -44,4 +44,6 @@ public:
     void setPAX(int nPax);
     void setPosX(float posX);
     void setPosY(float posY);
+    bool security(Troncon& troncon, Rame rame);
+    void gesVitesse(Rame rame);
 };

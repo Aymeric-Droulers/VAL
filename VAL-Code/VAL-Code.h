@@ -6,6 +6,7 @@
 
 #include <iostream>
 #include <vector>
+#include <random>
 // TODO: Référencez ici les en-têtes supplémentaires nécessaires à votre programme.
 
 
