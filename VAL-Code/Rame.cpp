@@ -49,3 +49,11 @@ void Rame::setPAX(int nPax)
 {
 	this->PAX = nPax;
 };
+
+
+void Rame::setPosX(float posX) {
+	this->posX = posX;
+}
+void Rame::setPosY(float posY) {
+	this->posY = posY;
+}
