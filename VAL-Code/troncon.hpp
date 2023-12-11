@@ -17,14 +17,14 @@ private:
 	Station& stationDebut;
 	Station& stationFin;
 	int tailleTroncon;
-	std::shared_ptr<Troncon> tronconSuivant;
+	Troncon* tronconSuivant;
 	std::vector<Rame> ramesSurTroncon;
 	std::vector<Point2D> trace;
 public:
 	Troncon(Station& stationDebut, Station& stationFin,int distance,std::vector<Point2D> trace);
 	Station& getStationDebut() { return (this->stationDebut); }
 	Station& getStationFin() { return(this->stationFin); }
-	std::shared_ptr<Troncon> getTronconSuivant() { return tronconSuivant; }
+	Troncon getTronconSuivant() { return *tronconSuivant; }
 	int getTailleTroncon() { return this->tailleTroncon; }
 	std::vector<Rame> getRamesSurLigne() { return this->ramesSurTroncon; }
 	std::vector<Point2D>getTrace() { return this->trace; }
@@ -35,5 +35,6 @@ public:
 	void setRamesSurTroncon(const std::vector<Rame>);
 	void addRameSurTroncon(const Rame);
 	void removeRameSurLigne(int rameId);
-	void setTronconSuivant(std::shared_ptr<Troncon>& troncon);
+	void setTronconSuivant(Troncon& troncon);
+	void gesPasssagers(Rame& rame);
 };
