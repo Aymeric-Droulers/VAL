@@ -59,6 +59,18 @@ void affichage(sf::RenderWindow &window,Superviseur& reseau) {
     {
         cout << "L'image n'a pas pu être chargé";
     }
+
+    //Affichage de l'overlay
+    sf::Text infos;
+    infos.setFont(font);
+    infos.setString("Modélisation du VAL\n Commandes:\n Echap: fermer la fenètre \n A: ajouter une rame");
+    infos.setCharacterSize(16); // exprimée en pixels, pas en points !
+    infos.setFillColor(sf::Color::White);
+    infos.setPosition(10.f,10.f);
+    window.draw(infos);
+    
+
+
     //Affichage des tracés des lignes:
     for (int iLignes = 0; iLignes < reseau.listeLignes.size(); iLignes++) {
         Ligne* ligne = reseau.listeLignes[iLignes];
@@ -93,7 +105,7 @@ void affichage(sf::RenderWindow &window,Superviseur& reseau) {
 
 
         text.setFont(font);
-        text.setString(station->getNom()+"\n"+to_string(station->getPAX_quai())+" passagers en attente");
+        text.setString(station->getNom()+" ("+to_string(station->getPAX_quai())+" PAX)");
         text.setCharacterSize(16); // exprimée en pixels, pas en points !
         text.setFillColor(sf::Color::White);
         text.setPosition(station->getPosX(), station->getPosY());
@@ -151,7 +163,7 @@ void affichage(sf::RenderWindow &window,Superviseur& reseau) {
         window.draw(shape);
         sf::Text text;
         text.setFont(font);
-        text.setString(to_string((int)round(rame->getVitesse())) + " km/h");
+        text.setString(to_string(rame->getNumero())+"\n"+ to_string((int)round(rame->getVitesse())) + " km/h");
         text.setStyle(sf::Text::Bold);
         text.setCharacterSize(16); // exprimée en pixels, pas en points !
         text.setFillColor(sf::Color::White);
@@ -164,6 +176,7 @@ void affichage(sf::RenderWindow &window,Superviseur& reseau) {
 
 void AddRame(Superviseur& reseau) {
     cout << "NewRame" << endl;
+    cout << numRames << endl;
     Rame* rame = new Rame();  // Utilisez new pour créer l'objet Rame sur le tas
     rame->setTronconActuel(reseau.listeLignes[0]->getListeTroncon()[0]);
     rame->setNumero(++numRames);
@@ -189,7 +202,7 @@ int main()
     Station Triolo("Triolo", false, 0, false, false,1449,840);
     Station Villeneuve_dAscq("Villeneuve-d'Ascq - Hôtel de Ville", false, 0, false, false,1330,796);
     Station Pont_de_Bois("Pont de Bois", false, 0, false, false,1300,705);
-    Station Square_Flandres("Square Flandres", false, 0, false, false,1115,671);
+    Station Square_Flandres("Square Flandres", false, 0, false, false,1145,691);
     Station Mairie_dHellemmes("Mairie d'Hellemmes", false, 0, false, false,1085,666);
     Station Marbrerie("Marbrerie", false, 0, false, false,1005,638);
     Station Fives("Fives", false, 0, false, false,921,583);
@@ -252,11 +265,11 @@ int main()
     Troncon ligne1_Marbrerie(Marbrerie,Mairie_dHellemmes, 567, trace);
     ligne1Troncons.push_back(&ligne1_Marbrerie);
     
-    trace = { Point2D(1085,666),Point2D(1115,672),Point2D(1115,671) };
+    trace = { Point2D(1085,666),Point2D(1115,672),Point2D(1145,691) };
     Troncon ligne1_MairiedHellmes(Mairie_dHellemmes,Square_Flandres, 209, trace);
     ligne1Troncons.push_back(&ligne1_MairiedHellmes);
 
-    trace = {Point2D(1115,671), Point2D(1215,679),Point2D(1300,705) };
+    trace = {Point2D(1145,691), Point2D(1215,679),Point2D(1300,705) };
     Troncon ligne1_SquareFlandres(Square_Flandres,Pont_de_Bois , 1254, trace);
     ligne1Troncons.push_back(&ligne1_SquareFlandres);
 
@@ -302,16 +315,8 @@ int main()
     Ligne1.setListeTroncon(ligne1Troncons);
     vector<Ligne*> listeLignes = { &Ligne1 };
 
-    Rame rame1 = Rame();
-    rame1.setNumero(1);
-    rame1.setPAX(10);
-    rame1.setPositionTroncon(0);
-    rame1.setTronconActuel(&ligne1_CHU_Centre_Oscar_Lambert);
-    rame1.setVitesse(1);
 
-    ligne1_CHU_Centre_Oscar_Lambert.addRameSurTroncon(rame1);
-
-    vector<Rame*>listeRames = { &rame1 };
+    vector<Rame*>listeRames = {};
 
 
 
