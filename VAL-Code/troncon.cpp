@@ -53,17 +53,3 @@ void Troncon::setTronconSuivant(Troncon& troncon)
 	this->tronconSuivant = &troncon;
 }
 
-void Troncon::gesPasssagers(Rame& rame) {
-	//si début de ligne
-	if (rame.getPositionTroncon() == 0) {
-		int v1 = rand() % 10;
-		this->getStationDebut().setPAX_quai(v1);
-		if (rame.getPAX() + v1 > 50) {
-			this->getStationDebut().setPAX_quai((rame.getPAX() + v1) - 50);
-		}
-	}
-	if(this->getStationFin==rame)
-	else {
-
-	}
-}

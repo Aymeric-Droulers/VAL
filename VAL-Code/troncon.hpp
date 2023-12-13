@@ -24,7 +24,7 @@ public:
 	Troncon(Station& stationDebut, Station& stationFin,int distance,std::vector<Point2D> trace);
 	Station& getStationDebut() { return (this->stationDebut); }
 	Station& getStationFin() { return(this->stationFin); }
-	Troncon getTronconSuivant() { return *tronconSuivant; }
+	Troncon* getTronconSuivant() { return tronconSuivant; }
 	int getTailleTroncon() { return this->tailleTroncon; }
 	std::vector<Rame> getRamesSurLigne() { return this->ramesSurTroncon; }
 	std::vector<Point2D>getTrace() { return this->trace; }

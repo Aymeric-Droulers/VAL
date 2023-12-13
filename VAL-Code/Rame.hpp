@@ -45,5 +45,7 @@ public:
     void setPosX(float posX);
     void setPosY(float posY);
     bool security(Troncon& troncon, Rame rame);
-    void gesVitesse(Rame rame);
+    void gesVitesse();
+    void gesPosition();
+    void changeTroncon();
 };

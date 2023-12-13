@@ -11,3 +11,4 @@
 
 
 const std::string path_font = "C:/Program Files/SFML/font/";
+const std::string path_img = "C:/Program Files/SFML/img/";

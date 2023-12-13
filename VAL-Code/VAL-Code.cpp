@@ -12,6 +12,9 @@
 using namespace std;
 
 bool Open = true;
+int numRames;
+
+
 
 
 float distancePoints(vector<Point2D> lstPoints) {
@@ -31,9 +34,13 @@ void iteratorRames(Superviseur& reseau) {
             Rame* rame = reseau.listeRames[iRames];
             Troncon* troncon = rame->getTronconActuel();
             if (rame->getPositionTroncon() < troncon->getTailleTroncon()) {
-                rame->setPositionTroncon(rame->getPositionTroncon() + 1);
+                rame->gesPosition();
 
             }
+
+            rame->gesVitesse();
+          
+            
         }
         this_thread::sleep_for(chrono::milliseconds(10));
     }
@@ -42,6 +49,16 @@ void iteratorRames(Superviseur& reseau) {
 
 
 void affichage(sf::RenderWindow &window,Superviseur& reseau) {
+    sf::Font font;
+    if (!font.loadFromFile(path_font + "arial.ttf"))
+    {
+        cout << "La police n'a pas pu être chargé";
+    }
+    sf::Texture textureMetro;
+    if (!textureMetro.loadFromFile(path_img+"metro.png"))
+    {
+        cout << "L'image n'a pas pu être chargé";
+    }
     //Affichage des tracés des lignes:
     for (int iLignes = 0; iLignes < reseau.listeLignes.size(); iLignes++) {
         Ligne* ligne = reseau.listeLignes[iLignes];
@@ -70,11 +87,7 @@ void affichage(sf::RenderWindow &window,Superviseur& reseau) {
 
         //texte
         
-        sf::Font font;
-        if (!font.loadFromFile(path_font + "arial.ttf"))
-        {
-            cout << "La police n'a pas pu être chargé";
-        }
+
 
         sf::Text text;
 
@@ -130,15 +143,37 @@ void affichage(sf::RenderWindow &window,Superviseur& reseau) {
         
   
         //Affichage
-        sf::CircleShape shape(5.f);
-        shape.setFillColor(sf::Color(100, 250, 50));
-        shape.setOrigin(5.f, 5.f);
+        sf::Sprite shape;
+        shape.setTexture(textureMetro);
+        shape.setScale(0.75, 0.75);
+        shape.setOrigin(9.75, 13.5);
         shape.setPosition(newPosX, newPosY);
         window.draw(shape);
+        sf::Text text;
+        text.setFont(font);
+        text.setString(to_string((int)round(rame->getVitesse())) + " km/h");
+        text.setStyle(sf::Text::Bold);
+        text.setCharacterSize(16); // exprimée en pixels, pas en points !
+        text.setFillColor(sf::Color::White);
+        text.setPosition(newPosX,newPosY);
+        window.draw(text);
     }
 
     this_thread::sleep_for(chrono::milliseconds(75));
 }
+
+void AddRame(Superviseur& reseau) {
+    cout << "NewRame" << endl;
+    Rame* rame = new Rame();  // Utilisez new pour créer l'objet Rame sur le tas
+    rame->setTronconActuel(reseau.listeLignes[0]->getListeTroncon()[0]);
+    rame->setNumero(++numRames);
+    rame->setPAX(10);
+    rame->setPositionTroncon(0);
+    rame->setVitesse(1);
+    reseau.listeLignes[0]->getListeTroncon()[0]->addRameSurTroncon(*rame);
+    reseau.listeRames.push_back(rame);  // Stockez le pointeur dans le vecteur
+}
+
 
 
 
@@ -213,7 +248,54 @@ int main()
     Troncon ligne1_Fives(Fives,Marbrerie , 665, trace);
     ligne1Troncons.push_back(&ligne1_Fives);
 
+    trace = {Point2D(1005,638),Point2D(1056,662),Point2D(1085,666) };
+    Troncon ligne1_Marbrerie(Marbrerie,Mairie_dHellemmes, 567, trace);
+    ligne1Troncons.push_back(&ligne1_Marbrerie);
     
+    trace = { Point2D(1085,666),Point2D(1115,672),Point2D(1115,671) };
+    Troncon ligne1_MairiedHellmes(Mairie_dHellemmes,Square_Flandres, 209, trace);
+    ligne1Troncons.push_back(&ligne1_MairiedHellmes);
+
+    trace = {Point2D(1115,671), Point2D(1215,679),Point2D(1300,705) };
+    Troncon ligne1_SquareFlandres(Square_Flandres,Pont_de_Bois , 1254, trace);
+    ligne1Troncons.push_back(&ligne1_SquareFlandres);
+
+    trace = {Point2D(1300,705), Point2D(1321,751), Point2D(1330,796) };
+    Troncon ligne1_PontDeBois(Pont_de_Bois,Villeneuve_dAscq, 639, trace);
+    ligne1Troncons.push_back(&ligne1_PontDeBois);
+
+    trace = {Point2D(1330,796), Point2D(1405,794), Point2D(1449,840)};
+    Troncon ligne1_Villeneuve(Villeneuve_dAscq,Triolo, 919, trace);
+    ligne1Troncons.push_back(&ligne1_Villeneuve);
+
+    trace = {Point2D(1449,840),Point2D(1460,889), Point2D(1468,935) };
+    Troncon ligne1_Triolo(Triolo,Cité_scientifique, 642, trace);
+    ligne1Troncons.push_back(&ligne1_Triolo);
+
+    trace = {Point2D(1468,935),Point2D(1439,986),Point2D(1434,1045) };
+    Troncon ligne1_Cite(Cité_scientifique,Quatre_Cantons, 781, trace);
+    ligne1Troncons.push_back(&ligne1_Cite);
+
+
+    //Lien entre troncons
+
+    ligne1_CHU_Eurasante.setTronconSuivant(ligne1_CHU_Centre_Oscar_Lambert);
+    ligne1_CHU_Centre_Oscar_Lambert.setTronconSuivant(ligne1_Porte_des_Postes);
+    ligne1_Porte_des_Postes.setTronconSuivant(ligne1_Wazemes);
+    ligne1_Wazemes.setTronconSuivant(ligne1_Gambetta);
+    ligne1_Gambetta.setTronconSuivant(ligne1_Republique);
+    ligne1_Republique.setTronconSuivant(ligne1_Rhiour);
+    ligne1_Rhiour.setTronconSuivant(ligne1_Flandres);
+    ligne1_Flandres.setTronconSuivant(ligne1_Caulier);
+    ligne1_Caulier.setTronconSuivant(ligne1_Fives);
+    ligne1_Fives.setTronconSuivant(ligne1_Marbrerie);
+    ligne1_Marbrerie.setTronconSuivant(ligne1_MairiedHellmes);
+    ligne1_MairiedHellmes.setTronconSuivant(ligne1_SquareFlandres);
+    ligne1_SquareFlandres.setTronconSuivant(ligne1_PontDeBois);
+    ligne1_PontDeBois.setTronconSuivant(ligne1_Villeneuve);
+    ligne1_Villeneuve.setTronconSuivant(ligne1_Triolo);
+    ligne1_Triolo.setTronconSuivant(ligne1_Cite);
+    ligne1_Cite.setTronconSuivant(ligne1_CHU_Eurasante);
     Ligne Ligne1 = Ligne();
 
     Ligne1.setListeStation(ligne1Stations);
@@ -223,10 +305,11 @@ int main()
     Rame rame1 = Rame();
     rame1.setNumero(1);
     rame1.setPAX(10);
-    rame1.setPositionTroncon(50);
-    rame1.setTronconActuel(&ligne1_CHU_Eurasante);
+    rame1.setPositionTroncon(0);
+    rame1.setTronconActuel(&ligne1_CHU_Centre_Oscar_Lambert);
+    rame1.setVitesse(1);
 
-    ligne1_CHU_Eurasante.addRameSurTroncon(rame1);
+    ligne1_CHU_Centre_Oscar_Lambert.addRameSurTroncon(rame1);
 
     vector<Rame*>listeRames = { &rame1 };
 
@@ -239,6 +322,8 @@ int main()
     reseau.listeLignes = listeLignes;
     reseau.listeRames = listeRames;
     reseau.listeStation = ligne1Stations;
+
+
 
 
 
@@ -266,7 +351,10 @@ int main()
             if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Escape){
                 window.close();
                 Open = false;
-            }   
+            }
+            if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::A) {
+                AddRame(reseau);
+            }
 
         }
         window.clear();
