@@ -54,8 +54,15 @@ void affichage(sf::RenderWindow &window,Superviseur& reseau) {
     {
         cout << "La police n'a pas pu être chargé";
     }
+
     sf::Texture textureMetro;
     if (!textureMetro.loadFromFile(path_img+"metro.png"))
+    {
+        cout << "L'image n'a pas pu être chargé";
+    }
+
+    sf::Texture textureMetroFrein;
+    if (!textureMetroFrein.loadFromFile(path_img + "metroFrein.png"))
     {
         cout << "L'image n'a pas pu être chargé";
     }
@@ -157,6 +164,9 @@ void affichage(sf::RenderWindow &window,Superviseur& reseau) {
         //Affichage
         sf::Sprite shape;
         shape.setTexture(textureMetro);
+        if (rame->getStatus()==3) { //si il freine
+            shape.setTexture(textureMetroFrein);
+        }
         shape.setScale(0.75, 0.75);
         shape.setOrigin(9.75, 13.5);
         shape.setPosition(newPosX, newPosY);
