@@ -231,7 +231,7 @@ int main()
 
     vector<Station*>ligne1Stations = { &CHU_Eurasanté, &CHU_Centre_Oscar_Lambret, &Porte_des_Postes, &Wazemmes, &Gambetta, &République_Beaux_Arts, &Rihour, &Gare_Lille_Flandres, &Caulier, &Fives, &Marbrerie, &Mairie_dHellemmes, &Square_Flandres, &Pont_de_Bois, &Villeneuve_dAscq, &Triolo, &Cité_scientifique, &Quatre_Cantons };
     vector<Troncon*>ligne1Troncons = {};
-    std::vector<Point2D> trace = { Point2D(302,1005),Point2D(298,957),Point2D(285,926)};
+    std::vector<Point2D> trace = { Point2D(302,1005),Point2D(298,967),Point2D(285,926)};
     Troncon ligne1_CHU_Eurasante(CHU_Eurasanté,CHU_Centre_Oscar_Lambret, 542,trace);
     ligne1Troncons.push_back(&ligne1_CHU_Eurasante);
 
@@ -239,11 +239,11 @@ int main()
     Troncon ligne1_CHU_Centre_Oscar_Lambert(CHU_Centre_Oscar_Lambret,Porte_des_Postes, 1301, trace);
     ligne1Troncons.push_back(&ligne1_CHU_Centre_Oscar_Lambert);
 
-    trace = {Point2D(446,814),Point2D(449,776),Point2D(452,738)};
+    trace = {Point2D(441,814),Point2D(444,776),Point2D(447,738)};
     Troncon ligne1_Porte_des_Postes(Porte_des_Postes,Wazemmes, 505, trace);
     ligne1Troncons.push_back(&ligne1_Porte_des_Postes);
 
-    trace = {Point2D(452,738),Point2D(452,702),Point2D(453,673)};
+    trace = {Point2D(448,738),Point2D(448,702),Point2D(448,673)};
     Troncon ligne1_Wazemes(Wazemmes,Gambetta, 430, trace);
     ligne1Troncons.push_back(&ligne1_Wazemes);
 
@@ -291,13 +291,104 @@ int main()
     Troncon ligne1_Villeneuve(Villeneuve_dAscq,Triolo, 919, trace);
     ligne1Troncons.push_back(&ligne1_Villeneuve);
 
-    trace = {Point2D(1449,840),Point2D(1460,889), Point2D(1468,935) };
+    trace = {Point2D(1445,840),Point2D(1460,889), Point2D(1468,935) };
     Troncon ligne1_Triolo(Triolo,Cité_scientifique, 642, trace);
     ligne1Troncons.push_back(&ligne1_Triolo);
 
-    trace = {Point2D(1468,935),Point2D(1439,986),Point2D(1434,1045) };
+    trace = {Point2D(1465,935),Point2D(1439,986),Point2D(1434,1045) };
     Troncon ligne1_Cite(Cité_scientifique,Quatre_Cantons, 781, trace);
     ligne1Troncons.push_back(&ligne1_Cite);
+
+
+    //
+
+   
+  
+    // Quatre_Cantons vers Cité_scientifique
+    trace = { Point2D(1436,1055), Point2D(1447,990), Point2D(1468,945) };
+    Troncon ligne1r_Quatre_Cantons = Troncon(Quatre_Cantons, Cité_scientifique, 781, trace);
+    ligne1Troncons.push_back(&ligne1r_Quatre_Cantons);
+
+    // Cité_scientifique vers Triolo
+    trace = { Point2D(1472,945), Point2D(1468,899), Point2D(1453,850) };
+    Troncon ligne1r_Cite = Troncon(Cité_scientifique, Triolo, 642, trace);
+    ligne1Troncons.push_back(&ligne1r_Cite);
+
+    // Triolo vers Villeneuve_dAscq
+    trace = { Point2D(1449,850), Point2D(1405,804), Point2D(1330,806) };
+    Troncon ligne1r_Triolo = Troncon(Triolo, Villeneuve_dAscq, 919, trace);
+    ligne1Troncons.push_back(&ligne1r_Triolo);
+
+    // Villeneuve_dAscq vers Pont_de_Bois
+    trace = { Point2D(1340,806), Point2D(1328,743), Point2D(1310,715)};
+    Troncon ligne1r_Villeneuve = Troncon(Villeneuve_dAscq, Pont_de_Bois, 639, trace);
+    ligne1Troncons.push_back(&ligne1r_Villeneuve);
+
+    // Pont_de_Bois vers Square_Flandres
+    trace = { Point2D(1300,715), Point2D(1215,689), Point2D(1145,701) };
+    Troncon ligne1r_PontDeBois = Troncon(Pont_de_Bois, Square_Flandres, 1254, trace);
+    ligne1Troncons.push_back(&ligne1r_PontDeBois);
+
+    // Square_Flandres vers Mairie_dHellemmes
+    trace = { Point2D(1145,701), Point2D(1115,682), Point2D(1085,676) };
+    Troncon ligne1r_SquareFlandres = Troncon(Square_Flandres, Mairie_dHellemmes, 209, trace);
+    ligne1Troncons.push_back(&ligne1r_SquareFlandres);
+
+    // Mairie_dHellemmes vers Marbrerie
+    trace = { Point2D(1085,676), Point2D(1056,672), Point2D(1005,648) };
+    Troncon ligne1r_MairiedHellmes = Troncon(Mairie_dHellemmes, Marbrerie, 567, trace);
+    ligne1Troncons.push_back(&ligne1r_MairiedHellmes);
+
+    // Marbrerie vers Fives
+    trace = { Point2D(1005,648), Point2D(963,619), Point2D(921,593) };
+    Troncon ligne1r_Marbrerie = Troncon(Marbrerie, Fives, 665, trace);
+    ligne1Troncons.push_back(&ligne1r_Marbrerie);
+
+    // Fives vers Caulier
+    trace = { Point2D(921,593), Point2D(888,566), Point2D(867,526) };
+    Troncon ligne1r_Fives = Troncon(Fives, Caulier, 582, trace);
+    ligne1Troncons.push_back(&ligne1r_Fives);
+
+    // Caulier vers Gare_Lille_Flandres
+    trace = { Point2D(867,526), Point2D(845,494), Point2D(770,496) };
+    Troncon ligne1r_Caulier = Troncon(Caulier, Gare_Lille_Flandres, 754, trace);
+    ligne1Troncons.push_back(&ligne1r_Caulier);
+
+    // Gare_Lille_Flandres vers Rihour
+    trace = { Point2D(770,496), Point2D(667,506), Point2D(584,517) };
+    Troncon ligne1r_Flandres = Troncon(Gare_Lille_Flandres, Rihour, 1240, trace);
+    ligne1Troncons.push_back(&ligne1r_Flandres);
+
+    // Rihour vers République_Beaux_Arts
+    trace = { Point2D(584,517), Point2D(571,548), Point2D(561,594) };
+    Troncon ligne1r_Rhiour = Troncon(Rihour, République_Beaux_Arts, 534, trace);
+    ligne1Troncons.push_back(&ligne1r_Rhiour);
+
+    // République_Beaux_Arts vers Gambetta
+    trace = { Point2D(561,594), Point2D(506,636), Point2D(453,683) };
+    Troncon ligne1r_Republique = Troncon(République_Beaux_Arts, Gambetta, 928, trace);
+    ligne1Troncons.push_back(&ligne1r_Republique);
+
+    // Gambetta vers Wazemmes
+    trace = { Point2D(456,683), Point2D(456,712), Point2D(456,748) };
+    Troncon ligne1r_Gambetta = Troncon(Gambetta, Wazemmes, 430, trace);
+    ligne1Troncons.push_back(&ligne1r_Gambetta);
+
+    // Wazemmes vers Porte_des_Postes
+    trace = { Point2D(455,748), Point2D(454,786), Point2D(451,824) };
+    Troncon ligne1r_Wazemes = Troncon(Wazemmes, Porte_des_Postes, 505, trace);
+    ligne1Troncons.push_back(&ligne1r_Wazemes);
+
+    // Porte_des_Postes vers CHU_Centre_Oscar_Lambret
+    trace = { Point2D(446,824), Point2D(364,875), Point2D(285,936) };
+    Troncon ligne1r_PorteDesPostes = Troncon(Porte_des_Postes, CHU_Centre_Oscar_Lambret, 1301, trace);
+    ligne1Troncons.push_back(&ligne1r_PorteDesPostes);
+
+    // CHU_Centre_Oscar_Lambret vers CHU_Eurasanté
+    trace = { Point2D(292,936), Point2D(306,967), Point2D(308,1015) };
+    Troncon ligne1r_CHU_Centre = Troncon(CHU_Centre_Oscar_Lambret, CHU_Eurasanté, 542, trace);
+    ligne1Troncons.push_back(&ligne1r_CHU_Centre);
+
 
 
     //Lien entre troncons
@@ -318,7 +409,24 @@ int main()
     ligne1_PontDeBois.setTronconSuivant(ligne1_Villeneuve);
     ligne1_Villeneuve.setTronconSuivant(ligne1_Triolo);
     ligne1_Triolo.setTronconSuivant(ligne1_Cite);
-    ligne1_Cite.setTronconSuivant(ligne1_CHU_Eurasante);
+    ligne1_Cite.setTronconSuivant(ligne1r_Quatre_Cantons);
+    ligne1r_Quatre_Cantons.setTronconSuivant(ligne1r_Cite);
+    ligne1r_Cite.setTronconSuivant(ligne1r_Triolo);
+    ligne1r_Triolo.setTronconSuivant(ligne1r_Villeneuve);
+    ligne1r_Villeneuve.setTronconSuivant(ligne1r_PontDeBois);
+    ligne1r_PontDeBois.setTronconSuivant(ligne1r_SquareFlandres);
+    ligne1r_SquareFlandres.setTronconSuivant(ligne1r_MairiedHellmes);
+    ligne1r_MairiedHellmes.setTronconSuivant(ligne1r_Marbrerie);
+    ligne1r_Marbrerie.setTronconSuivant(ligne1r_Fives);
+    ligne1r_Fives.setTronconSuivant(ligne1r_Caulier);
+    ligne1r_Caulier.setTronconSuivant(ligne1r_Flandres);
+    ligne1r_Flandres.setTronconSuivant(ligne1r_Rhiour);
+    ligne1r_Rhiour.setTronconSuivant(ligne1r_Republique);
+    ligne1r_Republique.setTronconSuivant(ligne1r_Gambetta);
+    ligne1r_Gambetta.setTronconSuivant(ligne1r_Wazemes);
+    ligne1r_Wazemes.setTronconSuivant(ligne1r_PorteDesPostes);
+    ligne1r_PorteDesPostes.setTronconSuivant(ligne1r_CHU_Centre);
+    ligne1r_CHU_Centre.setTronconSuivant(ligne1_CHU_Eurasante);
     Ligne Ligne1 = Ligne();
 
     Ligne1.setListeStation(ligne1Stations);
