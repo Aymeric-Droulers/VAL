@@ -11,5 +11,4 @@
 
 
 const std::string path_font = "C:/Program Files/SFML/font/";
-
-int nbrpassager();
+const std::string path_img = "../../../../VAL-Code/assets/img/";

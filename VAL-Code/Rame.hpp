@@ -20,6 +20,7 @@ private:
     int PAX; // Nombre de passagers
     float posX;
     float posY;
+    int status;
 public:
     // Constructeur par défaut
     Rame() : tronconActuel(nullptr), numero(0), positionTroncon(0), vitesse(0), PAX(0), posX(0),posY(0) {
@@ -36,6 +37,7 @@ public:
     int getPAX();
     float getPosX() { return this->posX; }
     float getPosY() { return this->posY; }
+    int getStatus() { return this->status; }
 
     void setNumero(int Nnumero);
     void setTronconActuel(Troncon* troncon);
@@ -44,6 +46,9 @@ public:
     void setPAX(int nPax);
     void setPosX(float posX);
     void setPosY(float posY);
-    bool security(Troncon& troncon);
-    void gesVitesse(Rame rame);
+    bool security(Troncon& troncon, Rame rame);
+    void gesVitesse();
+    void gesPosition();
+    void changeTroncon();
+    void setStatus(int status);
 };
