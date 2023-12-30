@@ -8,6 +8,7 @@
 #include "superviseur.hpp"
 #include <SFML/Window.hpp>
 #include <SFML/Graphics.hpp>
+#include<random>
 
 using namespace std;
 
@@ -140,38 +141,43 @@ void affichage(sf::RenderWindow &window,Superviseur& reseau) {
     this_thread::sleep_for(chrono::milliseconds(75));
 }
 
-
+int nbrpassager() {
+    int nombreAleatoire = rand() % 31;
+    return nombreAleatoire;
+}
 
 int main()
 {
-	
     //Création ligne
    // gestion présence des personnes 
    //ligne n°1 : 
    //Création des stations : 
-    Station Quatre_Cantons("Quatre_Cantons - Stade Pierre - Mauroy", false, 0, false, true,1434,1045);
-    Station Cité_scientifique("Cité scientifique - Professeur Gabillard", false, 0, false, false,1468,935);
-    Station Triolo("Triolo", false, 0, false, false,1449,840);
-    Station Villeneuve_dAscq("Villeneuve-d'Ascq - Hôtel de Ville", false, 0, false, false,1330,796);
-    Station Pont_de_Bois("Pont de Bois", false, 0, false, false,1300,705);
-    Station Square_Flandres("Square Flandres", false, 0, false, false,1115,671);
-    Station Mairie_dHellemmes("Mairie d'Hellemmes", false, 0, false, false,1085,666);
-    Station Marbrerie("Marbrerie", false, 0, false, false,1005,638);
-    Station Fives("Fives", false, 0, false, false,921,583);
-    Station Caulier("Caulier", false, 0, false, false,867,516);
-    Station Gare_Lille_Flandres("Gare Lille-Flandres", false, 0, false, false,770,486);
-    Station Rihour("Rihour", false, 0, false, false,584,507);
-    Station République_Beaux_Arts("République - Beaux-Arts", false, 0, false, false,561, 584);
-    Station Gambetta("Gambetta", false, 0, false, false,453,673);
-    Station Wazemmes("Wazemmes", false, 0, false, false,452,738);
-    Station Porte_des_Postes("Porte des Postes", false, 0, false, false,446,814);
-    Station CHU_Centre_Oscar_Lambret("CHU - Centre Oscar-Lambret", false, 0, false, false,285,926);
-    Station CHU_Eurasanté("CHU - Eurasanté", false, 0, true, false,302,1005);
+    Station Quatre_Cantons("Quatre_Cantons - Stade Pierre - Mauroy", false, 10, false, true, 1434, 1045);
+    Quatre_Cantons.setPAX_quai(nbrpassager());
+    Quatre_Cantons.setPAX_quai(10);
+    cout << Quatre_Cantons.getPAX_quai() << endl;
+    Station Cité_scientifique("Cité scientifique - Professeur Gabillard", false, nbrpassager(), false, false,1468,935);
+    Station Triolo("Triolo", false, nbrpassager(), false, false,1449,840);
+    Station Villeneuve_dAscq("Villeneuve-d'Ascq - Hôtel de Ville", false, nbrpassager(), false, false,1330,796);
+    Station Pont_de_Bois("Pont de Bois", false, nbrpassager(), false, false,1300,705);
+    Station Square_Flandres("Square Flandres", false, nbrpassager(), false, false,1115,671);
+    Station Mairie_dHellemmes("Mairie d'Hellemmes", false, nbrpassager(), false, false,1085,666);
+    Station Marbrerie("Marbrerie", false, nbrpassager(), false, false,1005,638);
+    Station Fives("Fives", false, nbrpassager(), false, false,921,583);
+    Station Caulier("Caulier", false, nbrpassager(), false, false,867,516);
+    Station Gare_Lille_Flandres("Gare Lille-Flandres", false, nbrpassager(), false, false,770,486);
+    Station Rihour("Rihour", false, nbrpassager(), false, false,584,507);
+    Station République_Beaux_Arts("République - Beaux-Arts", false, nbrpassager(), false, false,561, 584);
+    Station Gambetta("Gambetta", false, nbrpassager(), false, false,453,673);
+    Station Wazemmes("Wazemmes", false, nbrpassager(), false, false,452,738);
+    Station Porte_des_Postes("Porte des Postes", false, nbrpassager(), false, false,446,814);
+    Station CHU_Centre_Oscar_Lambret("CHU - Centre Oscar-Lambret", false, nbrpassager(), false, false,285,926);
+    Station CHU_Eurasanté("CHU - Eurasanté", false, nbrpassager(), true, false, 302, 1005);
 
 
 
 
-    vector<Station*>ligne1Stations = { &CHU_Eurasanté, &CHU_Centre_Oscar_Lambret, &Porte_des_Postes, &Wazemmes, &Gambetta, &République_Beaux_Arts, &Rihour, &Gare_Lille_Flandres, &Caulier, &Fives, &Marbrerie, &Mairie_dHellemmes, &Square_Flandres, &Pont_de_Bois, &Villeneuve_dAscq, &Triolo, &Cité_scientifique, &Quatre_Cantons };
+    vector<Station*>ligne1Stations = {&CHU_Eurasanté, &CHU_Centre_Oscar_Lambret, &Porte_des_Postes, &Wazemmes, &Gambetta, &République_Beaux_Arts, &Rihour, &Gare_Lille_Flandres, &Caulier, &Fives, &Marbrerie, &Mairie_dHellemmes, &Square_Flandres, &Pont_de_Bois, &Villeneuve_dAscq, &Triolo, &Cité_scientifique, &Quatre_Cantons};
     vector<Troncon*>ligne1Troncons = {};
     std::vector<Point2D> trace = { Point2D(302,1005),Point2D(298,957),Point2D(285,926)};
     Troncon ligne1_CHU_Eurasante(CHU_Eurasanté,CHU_Centre_Oscar_Lambret, 542,trace);
@@ -225,6 +231,7 @@ int main()
     rame1.setPAX(10);
     rame1.setPositionTroncon(50);
     rame1.setTronconActuel(&ligne1_CHU_Eurasante);
+    
 
     ligne1_CHU_Eurasante.addRameSurTroncon(rame1);
 
@@ -277,7 +284,9 @@ int main()
     
     threadConteur.join();
 
-    
+    cout << nbrpassager() << endl;
 
 	return 0;
 }
+
+

@@ -1,4 +1,5 @@
 #include "Station.h"
+#include <random>
 using namespace std;
 
 Station::Station(string nom, bool currentTrain, int pax, bool terminus, bool depart,int PosX, int PosY)
@@ -46,19 +47,20 @@ bool Station::getDepart()
 	return this->depart;
 }
 
-void Station::setNom(string nom) 
-{
-
+void Station::setNom(string nom) {
+	this->nom = nom;
 };
-void Station::setCurrentTrain(bool var) 
-{
+void Station::setCurrentTrain(bool var) {
+	this->currentTrain = var;
 }; 
-void Station::setPAX_quai(int nombre) 
-{
+void Station::setPAX_quai(int nombre) {
+	this->PAX_quai = nombre;
 }; 
 void Station::setTerminus(bool var) {
+	this->terminus = var;
 }; 
 void Station::setDepart(bool var) {
+	this->depart = var;
 }; 
 
 void Station::setPosX(int posX) {

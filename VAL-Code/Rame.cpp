@@ -58,12 +58,12 @@ void Rame::setPosY(float posY) {
 	this->posY = posY;
 }
 
-bool Rame::security(Troncon& troncon, Rame rame) {
+bool Rame::security(Troncon& troncon) {
     int nombre = troncon.getRamesSurLigne().size();
     vector <Rame> liste = {};
     for (size_t i = 0; i < nombre; i++)
     {
-        if (troncon.getRamesSurLigne()[i].getPositionTroncon() > rame.getPositionTroncon() and troncon.getRamesSurLigne()[i].getNumero() != rame.getNumero()) {
+        if (troncon.getRamesSurLigne()[i].getPositionTroncon() > this->getPositionTroncon() and troncon.getRamesSurLigne()[i].getNumero() != this->getNumero()) {
             for (size_t j = 0; j < liste.size(); j++)
             {
                 if (troncon.getRamesSurLigne()[i].getPositionTroncon() < troncon.getRamesSurLigne()[j].getPositionTroncon()) {
@@ -79,9 +79,10 @@ bool Rame::security(Troncon& troncon, Rame rame) {
     }
     else {
         Rame rame1 = liste[0];
-        while (rame1.getPositionTroncon() - rame.getPositionTroncon() < 200) {
+        while (rame1.getPositionTroncon() - this->getPositionTroncon() < 200) {
             return true;
         }
+        this->setVitesse((rame1.getVitesse() - 5));
     }
 
 };
@@ -94,7 +95,7 @@ void Rame::gesVitesse(Rame rame) {
     if (tronconact->getRamesSurLigne().size() == 1) {
         while (rame.getVitesse() <= 50) {
             while (rame.getPositionTroncon() < (1 / 3) * tronconact->getTailleTroncon()) {// phase d'accélération sur 1/3 du troncon
-                if (tronconact->getStationFin().getCurrentTrain() == false and tronconact->getStationDebut().getDepart() == true) {
+                if (tronconact->getStationFin().getCurrentTrain() == false) {
                     rame.setVitesse(rame.getVitesse() * 1.3);
                 }
             }
@@ -115,9 +116,9 @@ void Rame::gesVitesse(Rame rame) {
         }
     }
     else {
-        while (rame.getVitesse() <= 50 and security(*tronconact, rame) == true) {
+        while (rame.getVitesse() <= 50 and security(*tronconact) == true) {
             while (rame.getPositionTroncon() < (1 / 3) * tronconact->getTailleTroncon()) {// phase d'accélération sur 1/3 du troncon
-                if (tronconact->getStationFin().getCurrentTrain() == false and tronconact->getStationDebut().getDepart() == true) {
+                if (tronconact->getStationFin().getCurrentTrain() == false) {
                     rame.setVitesse(rame.getVitesse() * 1.3);
                 }
             }

@@ -11,3 +11,5 @@
 
 
 const std::string path_font = "C:/Program Files/SFML/font/";
+
+int nbrpassager();
