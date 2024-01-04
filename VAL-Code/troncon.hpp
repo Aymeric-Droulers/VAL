@@ -36,5 +36,5 @@ public:
 	void addRameSurTroncon(const Rame);
 	void removeRameSurLigne(int rameId);
 	void setTronconSuivant(Troncon& troncon);
-	void gesPasssagers(Rame& rame);
+	void gesPasssagers();
 };

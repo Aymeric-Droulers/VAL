@@ -49,6 +49,7 @@ public:
     bool security(Troncon& troncon, Rame rame);
     void gesVitesse();
     void gesPosition();
+    int gesPassager(Troncon troncon);
     void changeTroncon();
     void setStatus(int status);
 };
