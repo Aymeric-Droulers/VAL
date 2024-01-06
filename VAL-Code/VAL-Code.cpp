@@ -30,18 +30,49 @@ float distancePoints(vector<Point2D> lstPoints) {
 
 void iteratorRames(Superviseur& reseau) {
     while (Open) {
-        for (int iRames = 0; iRames < reseau.listeRames.size(); iRames++) {
+        for (int iRames = 0; iRames < reseau.listeRames.size(); iRames++) {//pour chaque rame
             Rame* rame = reseau.listeRames[iRames];
             Troncon* troncon = rame->getTronconActuel();
-            if (rame->getPositionTroncon() < troncon->getTailleTroncon()) {
+            if (rame->getPositionTroncon() < troncon->getTailleTroncon()) { //si la rame n'est pas a une station
                 rame->gesPosition();
+                rame->gesVitesse();
+            }
+            else { //si la rame est a une station
+                if (rame->getStatus() != 4) {
 
+                    rame->gesPassagers(); //calcul des passagers a échanger
+                }
+                else {
+                    cout << "Change PAX :" << rame->getPaxMontant()+rame->getPaxDescendant() << " Compteur: " << rame->getChangePaxCompteur() << endl;
+                    if (rame->getChangePaxCompteur() < rame->getPaxDescendant()) { //Descente des passagers
+                        rame->setChangePaxCompteur(rame->getChangePaxCompteur() + 1);
+                        rame->setPAX(rame->getPAX() - 1);
+                    }
+                    if (rame->getPaxDescendant() <= rame->getChangePaxCompteur() && rame->getChangePaxCompteur() <= rame->getPaxMontant()+rame->getPaxDescendant()) {//montée des passagers
+                        rame->setChangePaxCompteur(rame->getChangePaxCompteur() + 1);
+                        rame->setPAX(rame->getPAX() + 1);
+                    }
+                    if(rame->getChangePaxCompteur()>rame->getPaxMontant()+rame->getPaxDescendant()){
+                        rame->setChangePaxCompteur(0);
+                        rame->changeTroncon();
+                    }
+                }
             }
 
-            rame->gesVitesse();
+            //rame->gesVitesse();
           
             
         }
+
+        for (int iStations = 0; iStations < reseau.listeStation.size(); iStations++) {
+            Station* station = reseau.listeStation[iStations];
+            int isAddingPax = rand() % 100;
+            if (isAddingPax == 1) {
+                int AddPax = rand() % 3;
+                station->setPAX_quai(station->getPAX_quai() + AddPax);
+            }
+        }
+
         this_thread::sleep_for(chrono::milliseconds(10));
     }
 }
@@ -173,7 +204,7 @@ void affichage(sf::RenderWindow &window,Superviseur& reseau) {
         window.draw(shape);
         sf::Text text;
         text.setFont(font);
-        text.setString(to_string(rame->getNumero())+"\n"+ to_string((int)round(rame->getVitesse())) + " km/h");
+        text.setString(to_string(rame->getNumero())+"\n"+ to_string((int)round(rame->getVitesse())) + " km/h"+"\n"+to_string(rame->getPAX())+"pax");
         text.setStyle(sf::Text::Bold);
         text.setCharacterSize(16); // exprimée en pixels, pas en points !
         text.setFillColor(sf::Color::White);

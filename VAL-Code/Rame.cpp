@@ -129,7 +129,7 @@ void Rame::gesVitesse() {
                 }
                 else {
                     this->setVitesse(0);
-                    this->changeTroncon();
+                 //   this->changeTroncon();
                 }
                 n++;
             }
@@ -175,7 +175,7 @@ void Rame::gesVitesse() {
                 }
                 else {
                     this->setVitesse(0);
-                    this->changeTroncon();
+                  //  this->changeTroncon();
                 }
                 n++;
             }
@@ -199,4 +199,28 @@ void Rame::changeTroncon(){
 
 void Rame::setStatus(int status) {
     this->status = status;
+}
+
+void Rame::gesPassagers(){
+
+    int descPax = 0;
+    if (this->getPAX() != 0) {
+        descPax = rand() % this->getPAX() + 1;
+    }
+    int montePax = 0;
+    if (this->getTronconActuel()->getStationFin().getPAX_quai() > 0) {
+        montePax = rand() % this->getTronconActuel()->getStationFin().getPAX_quai();
+    }
+ 
+    this->PaxDescendant = descPax;
+    if (this->getPAX() - descPax + montePax > 50) { //si il y a trop de passagers qui veulent monter
+        montePax = 50 - this->getPAX() + descPax;
+        cout << "Rame pleine" << endl;
+    }
+    this->PaxMontant = montePax;
+    this->setChangePaxCompteur(0);
+    this->setStatus(4);
+    cout << "Passagers a bord" << this->getPAX() << endl;
+    cout << "Montant: " << montePax << " descendant" << descPax << endl;
+    cout << "Fin gesPassagers" << endl;
 }
