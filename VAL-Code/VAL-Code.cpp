@@ -41,32 +41,34 @@ void iteratorRames(Superviseur& reseau) {
                 if (rame->getStatus() != 4) {
 
                     rame->gesPassagers(); //calcul des passagers a échanger
+                    cout << "Pax initiaux:" << rame->getPAX() << endl;
                 }
                 else {
-                    cout << "Change PAX :" << rame->getPaxMontant()+rame->getPaxDescendant() << " Compteur: " << rame->getChangePaxCompteur() << endl;
                     if (rame->getChangePaxCompteur() < rame->getPaxDescendant()) { //Descente des passagers
                         rame->setChangePaxCompteur(rame->getChangePaxCompteur() + 1);
                         rame->setPAX(rame->getPAX() - 1);
                     }
-                    if (rame->getPaxDescendant() <= rame->getChangePaxCompteur() && rame->getChangePaxCompteur() <= rame->getPaxMontant()+rame->getPaxDescendant()) {//montée des passagers
+                    if (rame->getPaxDescendant() <= rame->getChangePaxCompteur() && rame->getChangePaxCompteur() < rame->getPaxMontant()+rame->getPaxDescendant()) {//montée des passagers
                         rame->setChangePaxCompteur(rame->getChangePaxCompteur() + 1);
                         rame->setPAX(rame->getPAX() + 1);
+                        Station* station = &rame->getTronconActuel()->getStationFin();
+                        station->setPAX_quai(station->getPAX_quai() - 1);
                     }
-                    if(rame->getChangePaxCompteur()>rame->getPaxMontant()+rame->getPaxDescendant()){
+                    if(rame->getChangePaxCompteur()>=rame->getPaxMontant()+rame->getPaxDescendant()){
                         rame->setChangePaxCompteur(0);
+                        cout << "Pax finaux:" << rame->getPAX() << endl << "--------------" << endl;
                         rame->changeTroncon();
                     }
                 }
             }
 
-            //rame->gesVitesse();
           
             
         }
 
         for (int iStations = 0; iStations < reseau.listeStation.size(); iStations++) {
             Station* station = reseau.listeStation[iStations];
-            int isAddingPax = rand() % 100;
+            int isAddingPax = rand() % 80;
             if (isAddingPax == 1) {
                 int AddPax = rand() % 3;
                 station->setPAX_quai(station->getPAX_quai() + AddPax);
@@ -238,7 +240,7 @@ int main()
    // gestion présence des personnes 
    //ligne n°1 : 
    //Création des stations : 
-    Station Quatre_Cantons("Quatre_Cantons - Stade Pierre - Mauroy", false, 0, false, true,1434,1045);
+    Station Quatre_Cantons("Quatre_Cantons - Stade Pierre - Mauroy", false, 0, true, true,1434,1045);
     Station Cité_scientifique("Cité scientifique - Professeur Gabillard", false, 0, false, false,1468,935);
     Station Triolo("Triolo", false, 0, false, false,1449,840);
     Station Villeneuve_dAscq("Villeneuve-d'Ascq - Hôtel de Ville", false, 0, false, false,1330,796);

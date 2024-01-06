@@ -212,15 +212,20 @@ void Rame::gesPassagers(){
         montePax = rand() % this->getTronconActuel()->getStationFin().getPAX_quai();
     }
  
-    this->PaxDescendant = descPax;
+
     if (this->getPAX() - descPax + montePax > 50) { //si il y a trop de passagers qui veulent monter
         montePax = 50 - this->getPAX() + descPax;
         cout << "Rame pleine" << endl;
     }
+
+    if (this->getTronconActuel()->getStationFin().getTerminus() == true) {
+        descPax = this->getPAX();
+    }
+
+    this->PaxDescendant = descPax;
     this->PaxMontant = montePax;
     this->setChangePaxCompteur(0);
     this->setStatus(4);
-    cout << "Passagers a bord" << this->getPAX() << endl;
+
     cout << "Montant: " << montePax << " descendant" << descPax << endl;
-    cout << "Fin gesPassagers" << endl;
 }
