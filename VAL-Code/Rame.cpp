@@ -1,5 +1,5 @@
 #include "Rame.hpp"
-#include <random>
+
 
 
 
@@ -107,23 +107,29 @@ void Rame::gesVitesse() {
                     }
                 }
             }
-            if (this->getPositionTroncon() > (static_cast<float>(2) / 5) * tronconact->getTailleTroncon()) {// phase vitesse constante sur 1/3 du troncon
+            if(this->getPositionTroncon() > (static_cast<float>(2) / 5) * tronconact->getTailleTroncon()) {// phase vitesse constante sur 1/3 du troncon
                 this->setStatus(2);
                 if (tronconact->getStationFin().getCurrentTrain() == false) {
                     this->setVitesse(this->getVitesse() * 1);
                 }
             }
-
+            
         }
         if (this->getPositionTroncon() > (static_cast<float>(4) / 5) * tronconact->getTailleTroncon()) {// phase vitesse constante sur 1/3 du troncon
             this->setStatus(3);
             if (tronconact->getStationFin().getCurrentTrain() == false) {
                 if (tronconact->getTailleTroncon() - this->getPositionTroncon() > 0) {
-                    if (tronconact->getTailleTroncon() - this->getPositionTroncon() == 0) {
-                        this->setVitesse(0);
-                        this_thread::sleep_for(chrono::seconds(gesPassager(*tronconact)));
-                        this->changeTroncon();
+          
+                    if (this->getVitesse() <= 10) {
+                        this->setVitesse(10);
                     }
+                    else {
+                        this->setVitesse(this->getVitesse() * 0.95);
+                    }
+                }
+                else {
+                    this->setVitesse(0);
+                    this->changeTroncon();
                 }
                 n++;
             }
@@ -153,7 +159,7 @@ void Rame::gesVitesse() {
                     this->setVitesse(this->getVitesse() * 1);
                 }
             }
-
+            
         }
         if (this->getPositionTroncon() > (1 / 5) * tronconact->getTailleTroncon()) {// phase déceleration
             this->setStatus(3);
@@ -167,7 +173,7 @@ void Rame::gesVitesse() {
                         this->setVitesse(this->getVitesse() * 0.95);
                     }
                 }
-                else{
+                else {
                     this->setVitesse(0);
                     this->changeTroncon();
                 }
@@ -175,21 +181,12 @@ void Rame::gesVitesse() {
             }
         }
     }
-
+   
 };
-
 
 
 void Rame::gesPosition() {
     this->setPositionTroncon(this->getPositionTroncon() + 0.1 *getVitesse());
-}
-
-int Rame::gesPassager(Troncon troncon)
-{
-    int echange = 0;
-    Rame rame = troncon.getRamesSurLigne()[1];
-    echange = rame.getPAX() + troncon.getStationFin().getPAX_quai();
-    return echange;
 }
 
 void Rame::changeTroncon(){
