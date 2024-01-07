@@ -20,8 +20,8 @@ int numRames;
 float distancePoints(vector<Point2D> lstPoints) {
     float distTotale = 0;
     for (int i = 0; i < lstPoints.size()-1; i++) {
-        float diffX = lstPoints[i + 1].posX - lstPoints[i].posX;
-        float diffY = lstPoints[i + 1].posY - lstPoints[i].posY;
+        float diffX = static_cast<float>(lstPoints[i + 1].posX - lstPoints[i].posX);
+        float diffY = static_cast<float>(lstPoints[i + 1].posY - lstPoints[i].posY);
         distTotale += (float)sqrt(pow(diffX, 2) + pow(diffY, 2));
     }
     return distTotale;
@@ -41,7 +41,6 @@ void iteratorRames(Superviseur& reseau) {
                 if (rame->getStatus() != 4) {
 
                     rame->gesPassagers(); //calcul des passagers a échanger
-                    cout << "Pax initiaux:" << rame->getPAX() << endl;
                 }
                 else {
                     if (rame->getChangePaxCompteur() < rame->getPaxDescendant()) { //Descente des passagers
@@ -56,7 +55,7 @@ void iteratorRames(Superviseur& reseau) {
                     }
                     if(rame->getChangePaxCompteur()>=rame->getPaxMontant()+rame->getPaxDescendant()){
                         rame->setChangePaxCompteur(0);
-                        cout << "Pax finaux:" << rame->getPAX() << endl << "--------------" << endl;
+                       
                         rame->changeTroncon();
                     }
                 }
@@ -118,7 +117,7 @@ void affichage(sf::RenderWindow &window,Superviseur& reseau) {
             Troncon* troncon = ligne->getListeTroncon()[nTroncon];
             sf::VertexArray lines(sf::LinesStrip, troncon->getTrace().size());
             for (size_t i = 0; i < troncon->getTrace().size(); ++i) {
-                lines[i].position = sf::Vector2f(troncon->getTrace()[i].posX, troncon->getTrace()[i].posY);
+                lines[i].position = sf::Vector2f(static_cast<float>(troncon->getTrace()[i].posX), static_cast<float>(troncon->getTrace()[i].posY));
                 lines[i].color = sf::Color::Yellow;
             }
             window.draw(lines);
@@ -133,7 +132,7 @@ void affichage(sf::RenderWindow &window,Superviseur& reseau) {
 
         sf::CircleShape cercleStation(10.f);
         cercleStation.setFillColor(sf::Color(250, 50, 50));
-        cercleStation.setPosition(station->getPosX(), station->getPosY());
+        cercleStation.setPosition(static_cast<float>(station->getPosX()), static_cast<float>(station->getPosY()));
         cercleStation.setOrigin(10.f, 10.f);
         window.draw(cercleStation);
 
@@ -148,7 +147,7 @@ void affichage(sf::RenderWindow &window,Superviseur& reseau) {
         text.setString(station->getNom()+" ("+to_string(station->getPAX_quai())+" PAX)");
         text.setCharacterSize(16); // exprimée en pixels, pas en points !
         text.setFillColor(sf::Color::White);
-        text.setPosition(station->getPosX(), station->getPosY());
+        text.setPosition(static_cast<float>(station->getPosX()), static_cast<float>(station->getPosY()));
         window.draw(text);
         
     }
