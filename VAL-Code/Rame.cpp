@@ -1,80 +1,67 @@
 #include "Rame.hpp"
 
-// Méthode pour obtenir le numéro de la rame
+
+
+
 int Rame::getNumero()
 {
-    return this->numero;
+	return this->numero;
 }
 
-// Méthode pour obtenir le tronçon actuel de la rame
 Troncon* Rame::getTronconActuel()
 {
-    return this->tronconActuel;
+	return this->tronconActuel;
 }
 
-// Méthode pour obtenir la position de la rame sur le tronçon
 int Rame::getPositionTroncon()
 {
-    return this->positionTroncon;
+	return this->positionTroncon;
 }
 
-// Méthode pour obtenir la vitesse de la rame
 float Rame::getVitesse()
 {
-    return this->vitesse;
+	return this->vitesse;
 }
 
-// Méthode pour obtenir le nombre de passagers dans la rame
 int Rame::getPAX()
 {
-    return this->PAX;
+	return this->PAX;
 }
 
-// Méthode pour définir le numéro de la rame
-void Rame::setNumero(int Nnumero)
+
+void Rame::setNumero(int Nnumero) 
 {
-    this->numero = Nnumero;
+	this->numero = Nnumero;
 }
-
-// Méthode pour définir le tronçon actuel de la rame
 void Rame::setTronconActuel(Troncon* troncon)
 {
-    this->tronconActuel = troncon;
-}
-
-// Méthode pour définir la position de la rame sur le tronçon
-void Rame::setPositionTroncon(int position)
+	this->tronconActuel = troncon;
+};
+void Rame::setPositionTroncon(int position) 
 {
-    this->positionTroncon = position;
-}
-
-// Méthode pour définir la vitesse de la rame
-void Rame::setVitesse(float nVitesse)
+	this->positionTroncon = position;
+};
+void Rame::setVitesse(float nVitesse) 
 {
-    this->vitesse = nVitesse;
-}
-
-// Méthode pour définir le nombre de passagers dans la rame
-void Rame::setPAX(int nPax)
+	this->vitesse = nVitesse;
+};
+void Rame::setPAX(int nPax) 
 {
-    this->PAX = nPax;
-}
+	this->PAX = nPax;
+};
 
-// Méthode pour définir la position de la rame sur l'axe X
+
 void Rame::setPosX(float posX) {
-    this->posX = posX;
+	this->posX = posX;
 }
-
-// Méthode pour définir la position de la rame sur l'axe Y
 void Rame::setPosY(float posY) {
-    this->posY = posY;
+	this->posY = posY;
 }
 
-//Méthode qui permet de vérifier que la distance de sécurité entre les rames est repescté 
 bool Rame::security(Troncon& troncon, Rame rame) {
-    int nombre = static_cast<int>(troncon.getRamesSurLigne().size());// Je regarder combien il y a de rame sur le troncon
+    int nombre = static_cast<int>(troncon.getRamesSurLigne().size());
     vector <Rame> liste = {};
-    for (size_t i = 0; i < nombre; i++)// Je les trie pour savoir lequel est devant la rame que je sécurise
+    for (size_t i = 0; i < nombre; i++)
     {
         if (troncon.getRamesSurLigne()[i].getPositionTroncon() > rame.getPositionTroncon() and troncon.getRamesSurLigne()[i].getNumero() != rame.getNumero()) {
             for (size_t j = 0; j < liste.size(); j++)
@@ -87,10 +74,10 @@ bool Rame::security(Troncon& troncon, Rame rame) {
             }
         }
     }
-    if (liste.size() == 0) {//Si il n'y pas de troncon sur la rame je n'ai aucune raison de m'inquièter 
+    if (liste.size() == 0) {
         return true;
     }
-    else {//Sinon je vérifie qu'il y ai toujours la distance de sécurité entre les deux rames
+    else {
         Rame rame1 = liste[0];
         while (rame1.getPositionTroncon() - rame.getPositionTroncon() < 200) {
             return true;
@@ -203,11 +190,11 @@ void Rame::gesPosition() {
 }
 
 void Rame::changeTroncon(){
-    this->tronconActuel->removeRameSurLigne(this->getNumero());// Récupération du numéro de la rame 
-    this->setTronconActuel(this->tronconActuel->getTronconSuivant());//Définitiion du troncon par le troncon suivant
-    this->tronconActuel->addRameSurTroncon(*this);//Ajout de la rame dans le troncon
-    this->setPositionTroncon(0);//Réinitialisation de la position de la rame sur troncon 
-    this->setVitesse(1);//Définition de la vitesse de la rame 
+    this->tronconActuel->removeRameSurLigne(this->getNumero());
+    this->setTronconActuel(this->tronconActuel->getTronconSuivant());
+    this->tronconActuel->addRameSurTroncon(*this);
+    this->setPositionTroncon(0);
+    this->setVitesse(1);
 }
 
 void Rame::setStatus(int status) {
@@ -216,13 +203,13 @@ void Rame::setStatus(int status) {
 
 void Rame::gesPassagers(){
 
-    int descPax = 0; // Définition d'un entier qui contient le nombre de passagers qui vont descendre du métro 
-    if (this->getPAX() != 0) {// Si le métro n'est pas vide 
-        descPax = rand() % this->getPAX() + 1; // Calcul du pourcentage de personne qui vont descendre de manière aléatoire 
+    int descPax = 0;
+    if (this->getPAX() != 0) {
+        descPax = rand() % this->getPAX() + 1;
     }
-    int montePax = 0; // Définition d'un entier qui contient le nombre de passagers qui vont monter dans le métro 
-    if (this->getTronconActuel()->getStationFin().getPAX_quai() > 0) {//Si la station que va rejoindre le métro n'est pas vide
-        montePax = rand() % this->getTronconActuel()->getStationFin().getPAX_quai();// Calcul du pourcentage de personne qui vont monter de manière aléatoire 
+    int montePax = 0;
+    if (this->getTronconActuel()->getStationFin().getPAX_quai() > 0) {
+        montePax = rand() % this->getTronconActuel()->getStationFin().getPAX_quai();
     }
  
 
@@ -230,13 +217,13 @@ void Rame::gesPassagers(){
         montePax = 50 - this->getPAX() + descPax;
     }
 
-    if (this->getTronconActuel()->getStationFin().getTerminus() == true) {// Si le métro zrrive au termminus de la ligne tout les passagers descendent
+    if (this->getTronconActuel()->getStationFin().getTerminus() == true) {
         descPax = this->getPAX();
     }
 
-    this->PaxDescendant = descPax;//Modification de la valeur des passagers descendant 
-    this->PaxMontant = montePax;//Modification de la valeur des passagers montant
+    this->PaxDescendant = descPax;
+    this->PaxMontant = montePax;
     this->setChangePaxCompteur(0);
-    this->setStatus(4);// Changement de status 
+    this->setStatus(4);
 
 }
