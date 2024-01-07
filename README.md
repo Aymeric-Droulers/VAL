@@ -13,7 +13,8 @@ Nous avons réalisée notre projet en utlisant la POO, et en spéarent chaque pa
 
 Nous pouvons identifier quatre classes principales : la classe rame, qui gère une rame de métro, la classe station, qui gère chaque station, la classe troncon qui gère chaque troncon de ligne entre deux stations et enfin la classe superviseur, qui gère l'ensemble du réseau.
 
-De plus nous avons utlisé une programation    c'est à dire que chaque fonction a une utlité bien précise et qu'elle ne fait que ca, ce qui rend le code plus lisible et maintenable.
+De plus nous avons chercher à appliquer le principe de résponsabilitée unique, c'est à dire que chaque fonction a une utlité bien précise et qu'elle ne fait que ca, ce qui rend le code plus lisible et maintenable.
+"Fais une seule chose, mais fais-la bien."
 
 ### Rame
 
