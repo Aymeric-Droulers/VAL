@@ -26,11 +26,11 @@ private:
     int status; // 1: acceleration 2: vitesse constante 3: deceleration 4:echange de passagers
 public:
     // Constructeur par défaut
-    Rame() : tronconActuel(nullptr), numero(0), positionTroncon(0), vitesse(0), PAX(0), posX(0), posY(0),status(0) {
+    Rame() : tronconActuel(nullptr), numero(0), positionTroncon(0), vitesse(0), PAX(0), PaxDescendant(0), PaxMontant(0),changePaxCompteur(0), posX(0), posY(0), status(0) {
     }
 
     // Constructeur avec Troncon
-    Rame(Troncon* troncon) : tronconActuel(troncon), numero(0), positionTroncon(0), vitesse(0), PAX(0), posX(0), posY(0),status(0) {
+    Rame(Troncon* troncon) : tronconActuel(troncon), numero(0), positionTroncon(0), vitesse(0), PAX(0), PaxDescendant(0), PaxMontant(0), changePaxCompteur(0), posX(0), posY(0),status(0) {
     }
 
     int getNumero();

@@ -59,7 +59,7 @@ void Rame::setPosY(float posY) {
 }
 
 bool Rame::security(Troncon& troncon, Rame rame) {
-    int nombre = troncon.getRamesSurLigne().size();
+    int nombre = static_cast<int>(troncon.getRamesSurLigne().size());
     vector <Rame> liste = {};
     for (size_t i = 0; i < nombre; i++)
     {
@@ -83,7 +83,7 @@ bool Rame::security(Troncon& troncon, Rame rame) {
             return true;
         }
     }
-
+    return false;
 };
 
 void Rame::gesVitesse() {
@@ -99,10 +99,10 @@ void Rame::gesVitesse() {
                 else {
                     if (tronconact->getStationFin().getCurrentTrain() == false) {
                         if (this->getVitesse() < 20) {
-                            this->setVitesse(this->getVitesse() * 1.3);
+                            this->setVitesse(static_cast<float>(this->getVitesse() * 1.3));
                         }
                         else {
-                            this->setVitesse(this->getVitesse() * 1.01);
+                            this->setVitesse(static_cast<float>(this->getVitesse() * 1.01));
                         }
                     }
                 }
@@ -124,7 +124,7 @@ void Rame::gesVitesse() {
                         this->setVitesse(10);
                     }
                     else {
-                        this->setVitesse(this->getVitesse() * 0.95);
+                        this->setVitesse(static_cast<float>(this->getVitesse() * 0.95));
                     }
                 }
                 else {
@@ -145,10 +145,10 @@ void Rame::gesVitesse() {
                 else {
                     if (tronconact->getStationFin().getCurrentTrain() == false) {
                         if (this->getVitesse() < 20) {
-                            this->setVitesse(this->getVitesse() * 1.3);
+                            this->setVitesse(static_cast<float>(this->getVitesse() * 1.3));
                         }
                         else {
-                            this->setVitesse(this->getVitesse() * 1.01);
+                            this->setVitesse(static_cast<float>(this->getVitesse() * 1.01));
                         }
                     }
                 }
@@ -170,7 +170,7 @@ void Rame::gesVitesse() {
                         this->setVitesse(10);
                     }
                     else {
-                        this->setVitesse(this->getVitesse() * 0.95);
+                        this->setVitesse(static_cast<float>(this->getVitesse() * 0.95));
                     }
                 }
                 else {
@@ -186,7 +186,7 @@ void Rame::gesVitesse() {
 
 
 void Rame::gesPosition() {
-    this->setPositionTroncon(this->getPositionTroncon() + 0.1 *getVitesse());
+    this->setPositionTroncon(static_cast<int>(this->getPositionTroncon() + 0.1 *getVitesse()));
 }
 
 void Rame::changeTroncon(){
@@ -215,7 +215,6 @@ void Rame::gesPassagers(){
 
     if (this->getPAX() - descPax + montePax > 50) { //si il y a trop de passagers qui veulent monter
         montePax = 50 - this->getPAX() + descPax;
-        cout << "Rame pleine" << endl;
     }
 
     if (this->getTronconActuel()->getStationFin().getTerminus() == true) {
@@ -227,5 +226,4 @@ void Rame::gesPassagers(){
     this->setChangePaxCompteur(0);
     this->setStatus(4);
 
-    cout << "Montant: " << montePax << " descendant" << descPax << endl;
 }
