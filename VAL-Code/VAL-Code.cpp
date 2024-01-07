@@ -238,40 +238,36 @@ int main()
     float coeff_largeur = 4;  
     float coeff_hauteur = 1.5;  
 
-    //Création ligne
-   // gestion présence des personnes 
-   //ligne n°1 : 
-   //Création des stations : 
-   Station Quatre_Cantons("Quatre_Cantons - Stade Pierre - Mauroy", false, 0, false, true, 383 * coeff_largeur, 466 * coeff_hauteur);
-Station Cité_scientifique("Cité scientifique - Professeur Gabillard", false, 0, false, false, 389 * coeff_largeur, 446 * coeff_hauteur);
-Station Triolo("Triolo", false, 0, false, false, 386 * coeff_largeur, 429 * coeff_hauteur);
-Station Villeneuve_dAscq("Villeneuve-d'Ascq - Hôtel de Ville", false, 0, false, false, 365 * coeff_largeur, 422 * coeff_hauteur);
-Station Pont_de_Bois("Pont de Bois", false, 0, false, false, 360 * coeff_largeur, 405 * coeff_hauteur);
-Station Square_Flandres("Square Flandres", false, 0, false, false, 326 * coeff_largeur, 399 * coeff_hauteur);
-Station Mairie_dHellemmes("Mairie d'Hellemmes", false, 0, false, false, 316 * coeff_largeur, 397 * coeff_hauteur);
-Station Marbrerie("Marbrerie", false, 0, false, false, 299 * coeff_largeur, 388 * coeff_hauteur);
-Station Fives("Fives", false, 0, false, false, 286 * coeff_largeur, 378 * coeff_hauteur);
-Station Caulier("Caulier", false, 0, false, false, 279 * coeff_largeur, 366 * coeff_hauteur);
-Station Gare_Lille_Flandres("Gare Lille-Flandres", false, 0, false, false, 246 * coeff_largeur, 367 * coeff_hauteur);
-Station Rihour("Rihour", false, 0, false, false, 232 * coeff_largeur, 370 * coeff_hauteur);
-Station République_Beaux_Arts("République - Beaux-Arts", false, 0, false, false, 227 * coeff_largeur, 383 * coeff_hauteur);
-Station Gambetta("Gambetta", false, 0, false, false, 209 * coeff_largeur, 400 * coeff_hauteur);
-Station Wazemmes("Wazemmes", false, 0, false, false, 208 * coeff_largeur, 410 * coeff_hauteur);
-Station Porte_des_Postes("Porte des Postes", false, 0, false, false, 207 * coeff_largeur, 424 * coeff_hauteur);
-Station CHU_Centre_Oscar_Lambret("CHU - Centre Oscar-Lambret", false, 0, false, false, 178 * coeff_largeur, 444 * coeff_hauteur);
-Station CHU_Eurasanté("CHU - Eurasanté", false, 0, true, false, 183 * coeff_largeur, 457 * coeff_hauteur);
+    //Ligne n°1 : 
+    //Création des stations : 
+    Station Quatre_Cantons("Quatre_Cantons - Stade Pierre - Mauroy", false, 0, false, true, 383 * coeff_largeur, 466 * coeff_hauteur);
+    Station Cité_scientifique("Cité scientifique - Professeur Gabillard", false, 0, false, false, 389 * coeff_largeur, 446 * coeff_hauteur);
+    Station Triolo("Triolo", false, 0, false, false, 386 * coeff_largeur, 429 * coeff_hauteur);
+    Station Villeneuve_dAscq("Villeneuve-d'Ascq - Hôtel de Ville", false, 0, false, false, 365 * coeff_largeur, 422 * coeff_hauteur);
+    Station Pont_de_Bois("Pont de Bois", false, 0, false, false, 360 * coeff_largeur, 405 * coeff_hauteur);
+    Station Square_Flandres("Square Flandres", false, 0, false, false, 326 * coeff_largeur, 399 * coeff_hauteur);
+    Station Mairie_dHellemmes("Mairie d'Hellemmes", false, 0, false, false, 316 * coeff_largeur, 397 * coeff_hauteur);
+    Station Marbrerie("Marbrerie", false, 0, false, false, 299 * coeff_largeur, 388 * coeff_hauteur);
+    Station Fives("Fives", false, 0, false, false, 286 * coeff_largeur, 378 * coeff_hauteur);
+    Station Caulier("Caulier", false, 0, false, false, 279 * coeff_largeur, 366 * coeff_hauteur);
+    Station Gare_Lille_Flandres("Gare Lille-Flandres", false, 0, false, false, 246 * coeff_largeur, 367 * coeff_hauteur);
+    Station Rihour("Rihour", false, 0, false, false, 232 * coeff_largeur, 370 * coeff_hauteur);
+    Station République_Beaux_Arts("République - Beaux-Arts", false, 0, false, false, 227 * coeff_largeur, 383 * coeff_hauteur);
+    Station Gambetta("Gambetta", false, 0, false, false, 209 * coeff_largeur, 400 * coeff_hauteur);
+    Station Wazemmes("Wazemmes", false, 0, false, false, 208 * coeff_largeur, 410 * coeff_hauteur);
+    Station Porte_des_Postes("Porte des Postes", false, 0, false, false, 207 * coeff_largeur, 424 * coeff_hauteur);
+    Station CHU_Centre_Oscar_Lambret("CHU - Centre Oscar-Lambret", false, 0, false, false, 178 * coeff_largeur, 444 * coeff_hauteur);
+    Station CHU_Eurasanté("CHU - Eurasanté", false, 0, true, false, 183 * coeff_largeur, 457 * coeff_hauteur);
     
-
-
-
-
-
+    //Création de la liste des stations de la ligne n°1
     vector<Station*>ligne1Stations = { &CHU_Eurasanté, &CHU_Centre_Oscar_Lambret, &Porte_des_Postes, &Wazemmes, &Gambetta, &République_Beaux_Arts, &Rihour, &Gare_Lille_Flandres, &Caulier, &Fives, &Marbrerie, &Mairie_dHellemmes, &Square_Flandres, &Pont_de_Bois, &Villeneuve_dAscq, &Triolo, &Cité_scientifique, &Quatre_Cantons };
+    //Création de la liste des tronçons de la ligne n°1
     vector<Troncon*>ligne1Troncons = {};
-    vector<Point2D> trace = { Point2D(183 * coeff_largeur, 457 * coeff_hauteur),
-                          Point2D(181 * coeff_largeur, 450 * coeff_hauteur),
-                          Point2D(178 * coeff_largeur, 444 * coeff_hauteur) };
-    Troncon ligne1_CHU_Eurasante(CHU_Eurasanté, CHU_Centre_Oscar_Lambret, 542, trace);
+    //Définition des tracés de la ligne n°1 
+    vector<Point2D> trace = { Point2D(183 * coeff_largeur, 457 * coeff_hauteur),//Premier point est la station de métro 
+                          Point2D(181 * coeff_largeur, 450 * coeff_hauteur),//Deuxieme point  c'est un point entre les deux stations de métro 
+                          Point2D(178 * coeff_largeur, 444 * coeff_hauteur) };// Troisième point est la seconde station de métro 
+    Troncon ligne1_CHU_Eurasante(CHU_Eurasanté, CHU_Centre_Oscar_Lambret, 542, trace);//Définition du  troncon avec le tracé et la distance entre les deux stations
     ligne1Troncons.push_back(&ligne1_CHU_Eurasante);
 
     trace = { Point2D(178 * coeff_largeur, 444 * coeff_hauteur),
