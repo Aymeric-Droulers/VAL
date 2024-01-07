@@ -53,6 +53,7 @@ void Troncon::setTronconSuivant(Troncon& troncon)
 	this->tronconSuivant = &troncon;
 }
 
+/*
 void Troncon::gesPasssagers(Rame &rame) {
 	int temps = 30; // Le temps d'arret minimum du métro
 	//si début de ligne
@@ -85,4 +86,4 @@ void Troncon::gesPasssagers(Rame &rame) {
 	}
 	temps += (1 * rame.getPAX());
 	this_thread::sleep_for(std::chrono::seconds(temps));
-}
+}*/
